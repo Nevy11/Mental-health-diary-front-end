@@ -1,0 +1,102 @@
+<form [formGroup]="emailForm" (ngSubmit)="onSubmit()">
+  <!-- email -->
+  <div style="background-color: white">
+    <mat-form-field class="email-form-field">
+      <mat-label>Enter your email</mat-label>
+      <input
+        matInput
+        formControlName="email"
+        placeholder="your-email-address@example.com"
+      />
+      <mat-error *ngIf="emailForm.controls['email']?.hasError('required')">
+        Email is required
+      </mat-error>
+      <mat-error *ngIf="emailForm.controls['email']?.hasError('email')">
+        Invalid email format
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <!-- username -->
+  <div style="background-color: white">
+    <mat-form-field class="email-form-field">
+      <mat-label>Enter your username</mat-label>
+      <input matInput formControlName="username" placeholder="@smart_coder11" />
+      <mat-error *ngIf="emailForm.controls['username']?.hasError('required')">
+        Username is required
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <!-- userpassword1 -->
+  <div>
+    <mat-form-field class="email-form-field">
+      <mat-label>Enter your password</mat-label>
+      <input
+        matInput
+        formControlName="userpassword1"
+        [type]="hide() ? 'password' : 'text'"
+      />
+      <mat-error
+        *ngIf="emailForm.controls['userpassword1']?.hasError('required')"
+      >
+        Password is required
+      </mat-error>
+      <mat-error
+        *ngIf="emailForm.controls['userpassword1']?.hasError('minlength')"
+      >
+        Enter a password longer than 6 characters
+      </mat-error>
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="clickEvent($event)"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide()"
+      >
+        <mat-icon>{{ hide() ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+
+  <!-- userpassword2 -->
+  <div>
+    <mat-form-field class="email-form-field">
+      <mat-label>Re-enter your password</mat-label>
+      <input
+        matInput
+        formControlName="userpassword2"
+        [type]="hide() ? 'password' : 'text'"
+      />
+      <mat-error
+        *ngIf="emailForm.controls['userpassword2']?.hasError('required')"
+      >
+        Password is required
+      </mat-error>
+      <mat-error
+        *ngIf="emailForm.controls['userpassword2']?.hasError('minlength')"
+      >
+        Enter a password longer than 6 characters
+      </mat-error>
+
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="clickEvent($event)"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide()"
+      >
+        <mat-icon>{{ hide() ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <button mat-button [disabled]="emailForm.invalid" type="submit">
+      Submit
+    </button>
+    <mat-error *ngIf="emailForm.hasError('passwordsMismatch')">
+      The two passwords must match
+    </mat-error>
+  </div>
+</form>

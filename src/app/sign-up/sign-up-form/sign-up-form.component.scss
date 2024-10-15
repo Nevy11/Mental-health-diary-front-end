@@ -1,0 +1,18 @@
+.email-form-field {
+  width: 100%;
+  background-color: white;
+  color: black;
+}
+
+.email-form-field input {
+  // background-color: black;
+  // color: white;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .email-form-field {
+    width: 100%;
+  }
+}
