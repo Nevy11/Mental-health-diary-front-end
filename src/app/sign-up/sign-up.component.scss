@@ -8,3 +8,25 @@
   text-align: center;
   margin-top: 1.5rem;
 }
+
+.title {
+  align-items: center;
+  font-size: large;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .sign_up_form {
+    margin-left: 6rem;
+    margin-right: 6rem;
+    margin-top: 3rem;
+    margin-bottom: 5rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .sign_up_form {
+    margin-left: 20rem;
+    margin-right: 20rem;
+  }
+}
