@@ -30,14 +30,12 @@
           </mat-error>
         </mat-form-field>
 
-        <button
-          mat-raised-button
-          color="primary"
-          type="submit"
-          [disabled]="!loginForm.valid"
-        >
-          Login
-        </button>
+        <div class="bottom-button">
+          <button mat-raised-button type="submit" [disabled]="!loginForm.valid">
+            Login
+          </button>
+          <button>sign up</button>
+        </div>
       </form>
     </mat-card-content>
   </mat-card>
