@@ -2,7 +2,9 @@
 
 <div class="below_sign_up">
   Already have an account?
-  <button mat-button>Log In</button>
+  <button mat-button (click)="login()">
+    <a routerLinkActive="login">Log In</a>
+  </button>
 </div>
 <div class="sign_up_form">
   <diary-sign-up-form></diary-sign-up-form>

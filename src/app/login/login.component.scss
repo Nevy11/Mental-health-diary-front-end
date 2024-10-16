@@ -1,15 +1,14 @@
 .login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 1000vh;
-  }
-  
-  .login-card {
-    width: 400px;
-  }
-  
-  .full-width {
-    width: 100%;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15rem;
+}
+
+.login-card {
+  width: 400px;
+}
+
+.full-width {
+  width: 100%;
+}
