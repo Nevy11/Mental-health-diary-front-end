@@ -34,7 +34,9 @@
           <button mat-raised-button type="submit" [disabled]="!loginForm.valid">
             Login
           </button>
-          <button>sign up</button>
+          <button mat-stoked-button type="button" (click)="signUp()">
+            sign up
+          </button>
         </div>
       </form>
     </mat-card-content>

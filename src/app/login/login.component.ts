@@ -14,6 +14,7 @@ import {
 import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'diary-login',
@@ -46,7 +47,7 @@ export class LoginComponent {
   }
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private router: Router) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
@@ -59,5 +60,8 @@ export class LoginComponent {
       const password = this.loginForm.get('password')?.value;
       console.log('Login successful with:', email, password);
     }
+  }
+  signUp() {
+    this.router.navigate(['sign up']);
   }
 }
