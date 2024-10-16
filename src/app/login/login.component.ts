@@ -49,7 +49,7 @@ export class LoginComponent {
 
   constructor(private fb: FormBuilder, private router: Router) {
     this.loginForm = this.fb.group({
-      username: ['', [Validators.required, Validators.email]],
+      username: ['', [Validators.required]],
       password: ['', Validators.required],
     });
   }
@@ -59,6 +59,7 @@ export class LoginComponent {
       const email = this.loginForm.get('email')?.value;
       const password = this.loginForm.get('password')?.value;
       console.log('Login successful with:', email, password);
+      this.router.navigate(['dashboard']);
     }
   }
   signUp() {

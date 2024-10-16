@@ -7,17 +7,17 @@
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <mat-form-field class="full-width">
           <mat-label>username</mat-label>
-          <input matInput formControlName="username" type="username" required />
+          <input matInput formControlName="username" />
           <mat-error
             *ngIf="loginForm.controls['username'].hasError('required')"
           >
             please input your username
           </mat-error>
-          <mat-error
+          <!-- <mat-error
             *ngIf="loginForm.controls['username'].hasError('username')"
           >
             Please enter a valid username
-          </mat-error>
+          </mat-error> -->
         </mat-form-field>
 
         <mat-form-field class="full-width">
