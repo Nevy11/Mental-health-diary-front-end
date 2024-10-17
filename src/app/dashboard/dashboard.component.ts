@@ -7,6 +7,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'diary-dashboard',
@@ -51,6 +52,7 @@ export class DashboardComponent {
             mobile: true,
             track_goal:
               'Enter you goals, try improving yourself, both mentally and physically. ',
+            additional_track_goal: 'Update your goals',
           },
           {
             title: 'Settings',
@@ -85,7 +87,9 @@ export class DashboardComponent {
           rows: 2,
           mobile: false,
           track_goal:
-            'Enter you goals, try improving yourself, both mentally and physically. Set your goals, for example, If you have social anxiety, talk to 5 people this week, and in the goal area, if you achieve, carry your goal from todo section to done; then save your update. This enables and helps you to improve your self every day. Success in tracking your goal mate',
+            'Enter you goals, try improving yourself, both mentally and physically. Set your goals, for example, If you have social anxiety, talk to 5 people this week, and in the goal area, if you achieve, carry your goal from todo section to done; then save your update. This enables and helps you to improve your self every day. Do not forget to become the best version of yourself!',
+          additional_track_goal:
+            "This is how it works, choose a particular day of your week to keep on updating your goals. Once it is done, Yo'll be given  two containers, one is labeled `todo` while the other is labeled `done`. Add your goals, then enter to place it in the to do list. When you finish, drag your achieved from the `todo` to `done`",
         },
         {
           title: 'Settings',
@@ -98,4 +102,8 @@ export class DashboardComponent {
       ];
     })
   );
+  constructor(private router: Router) {}
+  sign_out() {
+    this.router.navigate(['login']);
+  }
 }

@@ -1,5 +1,10 @@
 <div class="grid-container">
-  <h1 class="mat-h1">Dashboard</h1>
+  <div class="top-section">
+    <h1 class="mat-h1">Dashboard</h1>
+    <div class="right-point">
+      <div (click)="sign_out()">sign out</div>
+    </div>
+  </div>
   <mat-grid-list cols="2" rowHeight="350px">
     @for (card of cards | async; track card) {
     <mat-grid-tile [colspan]="card.cols" [rowspan]="card.rows">
@@ -33,6 +38,7 @@
           <div>
             {{ card.track_goal }}
           </div>
+          <div>{{ card.additional_track_goal }}</div>
           <div>{{ card.settings }}</div>
           }
         </mat-card-content>
