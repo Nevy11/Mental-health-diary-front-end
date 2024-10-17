@@ -19,8 +19,8 @@ import { MatCardModule } from '@angular/material/card';
     MatMenuModule,
     MatIconModule,
     MatButtonModule,
-    MatCardModule
-  ]
+    MatCardModule,
+  ],
 })
 export class DashboardComponent {
   private breakpointObserver = inject(BreakpointObserver);
@@ -30,18 +30,52 @@ export class DashboardComponent {
     map(({ matches }) => {
       if (matches) {
         return [
-          { title: 'Card 1', cols: 1, rows: 1 },
-          { title: 'Card 2', cols: 1, rows: 1 },
-          { title: 'Card 3', cols: 1, rows: 1 },
-          { title: 'Card 4', cols: 1, rows: 1 }
+          {
+            title: 'Mental AI',
+            cols: 1,
+            rows: 1,
+            mobile: true,
+            card_content:
+              "Talk to me about all of what you are feeling right now and i'll help you. \n Save the cost that you are planning to hire a therapist. \n\n ",
+          },
+          {
+            title: 'Diary',
+            cols: 1,
+            rows: 1,
+            mobile: true,
+            diary:
+              "Write all of what you are feeling right now to rembember your past. \n Wait, You don't need to type to write all of what you are feeling, we'll do that for you. Just speak as if you are speaking to a real therapist.",
+          },
+          { title: 'Track Goal', cols: 1, rows: 1, mobile: true },
+          { title: 'Settings', cols: 1, rows: 1, mobile: true },
         ];
       }
 
       return [
-        { title: 'Card 1', cols: 2, rows: 1 },
-        { title: 'Card 2', cols: 1, rows: 1 },
-        { title: 'Card 3', cols: 1, rows: 2 },
-        { title: 'Card 4', cols: 1, rows: 1 }
+        {
+          title: 'Mental AI',
+          cols: 2,
+          rows: 1,
+          mobile: false,
+          card_content:
+            "Talk to me about all of what you are feeling right now and i'll help you. \n Save the cost that you are planning to hire a therapist. \n\n ",
+        },
+        {
+          title: 'Diary',
+          cols: 1,
+          rows: 1,
+          mobile: false,
+          diary:
+            "Write all of what you are feeling right now to rembember your past. \n Wait, You don't need to type to write all of what you are feeling, we'll do that for you. Just speak as if you are speaking to a real therapist.",
+        },
+        {
+          title: 'Track Goal',
+          cols: 1,
+          rows: 2,
+          mobile: false,
+          track_goal: 'The goal is ',
+        },
+        { title: 'Settings', cols: 1, rows: 1, mobile: false },
       ];
     })
   );
