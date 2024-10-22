@@ -1,7 +1,7 @@
 <div class="grid-container">
   <mat-grid-list cols="2" rowHeight="350px">
     @for (card of cards | async; track card) {
-    <div [routerLink]="card.title">
+    <div>
       <mat-grid-tile [colspan]="card.cols" [rowspan]="card.rows">
         <mat-card class="dashboard-card">
           <mat-card-header>
@@ -39,6 +39,7 @@
             </div>
             <div>{{ card.additional_track_goal }}</div>
             <div>{{ card.settings }}</div>
+            <button routerLink="{{ card.title }}">{{ card.title }}</button>
             }
           </mat-card-content>
         </mat-card>
