@@ -1,1 +1,13 @@
-<router-outlet />
+<mat-sidenav-container>
+  <div class="top-section">
+    <h1 class="mat-h1">Dashboard</h1>
+    <!-- <div class="right-point">
+            <div (click)="sign_out()">sign out</div>
+          </div> -->
+
+    <div class="button">
+      <mat-slide-toggle (click)="toggletheme()">Dark Mode</mat-slide-toggle>
+    </div>
+  </div>
+  <router-outlet />
+</mat-sidenav-container>

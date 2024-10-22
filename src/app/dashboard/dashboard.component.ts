@@ -8,6 +8,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { Router } from '@angular/router';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @Component({
   selector: 'diary-dashboard',
@@ -21,6 +23,8 @@ import { Router } from '@angular/router';
     MatIconModule,
     MatButtonModule,
     MatCardModule,
+    MatSlideToggleModule,
+    MatSidenavModule,
   ],
 })
 export class DashboardComponent {
