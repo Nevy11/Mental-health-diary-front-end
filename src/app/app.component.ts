@@ -25,7 +25,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  name = 'kassy-ux';
+  name = 'Nevy11';
   toggletheme() {
     if (document.body.classList.contains('light-theme')) {
       document.body.classList.remove('light-theme');
