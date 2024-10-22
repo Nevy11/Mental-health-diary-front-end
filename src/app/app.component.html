@@ -1,10 +1,12 @@
 <mat-sidenav-container>
-  <div class="top-section">
-    <h1 class="mat-h1">{{ name }}</h1>
+  <div class="full-screen-component">
+    <div class="top-section">
+      <h1 class="mat-h1">{{ name }}</h1>
 
-    <div class="button">
-      <mat-slide-toggle (click)="toggletheme()">Dark Mode</mat-slide-toggle>
+      <div class="button">
+        <mat-slide-toggle (click)="toggletheme()">Dark Mode</mat-slide-toggle>
+      </div>
     </div>
+    <router-outlet />
   </div>
-  <router-outlet />
 </mat-sidenav-container>

@@ -8,3 +8,8 @@ density .bag {
 .button {
   margin-top: 2rem;
 }
+
+.full-screen-component {
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+}
