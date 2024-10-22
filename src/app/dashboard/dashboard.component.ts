@@ -42,6 +42,7 @@ export class DashboardComponent {
             rows: 1,
             mobile: true,
             card_content: 'Speak or write to mental gpt.',
+            button_name: 'to_mental_ai',
           },
           {
             title: 'Diary',
@@ -77,6 +78,7 @@ export class DashboardComponent {
           mobile: false,
           card_content:
             "Talk to me about all of what you are feeling right now and i'll help you. \n Save the cost that you are planning to hire a therapist. \n\n ",
+          button_name: 'to_mental_ai',
         },
         {
           title: 'Diary',
@@ -119,5 +121,22 @@ export class DashboardComponent {
   }
   to_settings() {
     this.router.navigate(['Settings']);
+  }
+  to_diary() {
+    this.router.navigate(['Diary']);
+  }
+  route_function(name: string) {
+    if (name == 'Mental AI') {
+      this.to_mental_ai();
+    }
+    if (name == 'Track Goal') {
+      this.to_track_goal();
+    }
+    if (name == 'Diary') {
+      this.to_diary();
+    }
+    if (name == 'Settings') {
+      this.to_settings();
+    }
   }
 }

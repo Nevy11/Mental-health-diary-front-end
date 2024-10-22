@@ -39,7 +39,15 @@
             </div>
             <div>{{ card.additional_track_goal }}</div>
             <div>{{ card.settings }}</div>
-            <button routerLink="{{ card.title }}">{{ card.title }}</button>
+            <div class="cover-button">
+              <button
+                (click)="route_function(card.title)"
+                mat-flat-button
+                class="move-button"
+              >
+                {{ card.title }}
+              </button>
+            </div>
             }
           </mat-card-content>
         </mat-card>

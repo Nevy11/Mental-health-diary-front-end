@@ -73,3 +73,7 @@ body.light-theme {
 body.dark-theme {
   @include mat.all-component-colors($dark-theme);
 }
+
+// .diary-root {
+//   height: 100vh;
+// }
