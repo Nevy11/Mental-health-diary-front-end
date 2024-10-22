@@ -1,0 +1,31 @@
+.day-radio {
+  display: flex;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 768px) {
+  /* Styles for mobile phones */
+  .drag-drop {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  /* Styles for tablets */
+  .drag-drop {
+    margin-left: 13rem;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .drag-drop {
+    display: flex;
+    justify-content: center;
+  }
+  body {
+    height: 100vh;
+  }
+}
