@@ -29,6 +29,13 @@
             <div>{{ card.diary }}</div>
             <div>{{ card.track_goal }}</div>
             <div>{{ card.settings }}</div>
+            <button
+              (click)="route_function(card.title)"
+              mat-flat-button
+              class="move-button"
+            >
+              {{ card.title }}
+            </button>
             } @if (!card.mobile) {
             <div class="card-content">
               {{ card.card_content }}
