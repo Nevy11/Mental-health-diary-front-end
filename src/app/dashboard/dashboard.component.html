@@ -1,47 +1,49 @@
 <div class="grid-container">
   <mat-grid-list cols="2" rowHeight="350px">
     @for (card of cards | async; track card) {
-    <mat-grid-tile [colspan]="card.cols" [rowspan]="card.rows">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            {{ card.title }}
-            <button
-              mat-icon-button
-              class="more-button"
-              [matMenuTriggerFor]="menu"
-              aria-label="Toggle menu"
-            >
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
-              <button mat-menu-item>Remove</button>
-            </mat-menu>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboaard-card-content">
-          @if (card.mobile) {
-          <div class="card_content_mobile" [routerLink]="card.card_content">
-            {{ card.card_content }}
-          </div>
-          <div [routerLink]="card.diary">{{ card.diary }}</div>
-          <div [routerLink]="card.track_goal">{{ card.track_goal }}</div>
-          <div [routerLink]="card.settings">{{ card.settings }}</div>
-          } @if (!card.mobile) {
-          <div class="card-content" routerLink="Mental AI">
-            {{ card.card_content }}
-          </div>
-          <div class="diary-content" routerLink="diary">{{ card.diary }}</div>
-          <div [routerLink]="card.track_goal">
-            {{ card.track_goal }}
-          </div>
-          <div routerLink="Track Goal">{{ card.additional_track_goal }}</div>
-          <div routerLink="Settings">{{ card.settings }}</div>
-          }
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
+    <div [routerLink]="card.title">
+      <mat-grid-tile [colspan]="card.cols" [rowspan]="card.rows">
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+              {{ card.title }}
+              <button
+                mat-icon-button
+                class="more-button"
+                [matMenuTriggerFor]="menu"
+                aria-label="Toggle menu"
+              >
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" xPosition="before">
+                <button mat-menu-item>Expand</button>
+                <button mat-menu-item>Remove</button>
+              </mat-menu>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboaard-card-content">
+            @if (card.mobile) {
+            <div class="card_content_mobile" [routerLink]="card.card_content">
+              {{ card.card_content }}
+            </div>
+            <div>{{ card.diary }}</div>
+            <div>{{ card.track_goal }}</div>
+            <div>{{ card.settings }}</div>
+            } @if (!card.mobile) {
+            <div class="card-content">
+              {{ card.card_content }}
+            </div>
+            <div class="diary-content" routerLink="diary">{{ card.diary }}</div>
+            <div>
+              {{ card.track_goal }}
+            </div>
+            <div>{{ card.additional_track_goal }}</div>
+            <div>{{ card.settings }}</div>
+            }
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    </div>
     }
   </mat-grid-list>
 </div>
