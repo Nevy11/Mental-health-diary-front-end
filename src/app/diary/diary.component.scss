@@ -1,10 +1,22 @@
-.example-form {
+.diary-form {
     min-width: 150px;
     max-width: 500px;
     width: 100%;
   }
   
-  .example-full-width {
+  .diary-full-width {
     width: 100%;
   }
+  button {
+    margin-top: 10px;
+    cursor: pointer;
+  }
   
+  emoji-mart {
+    position: absolute;
+    z-index: 100;
+  }
+  
+  // .emojis{
+    
+  // }
