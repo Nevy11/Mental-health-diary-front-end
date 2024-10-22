@@ -20,15 +20,15 @@ export const routes: Routes = [
   },
   { path: '', redirectTo: 'sign up', pathMatch: 'full' },
   {
-    path: 'diary',
+    path: 'Diary',
     component: DiaryComponent,
   },
   {
-    path: ' AI',
+    path: 'Mental AI',
     component: AIComponent,
   },
   {
-    path: ' Goal',
+    path: 'Track Goal',
     component: GoalComponent,
   },
   {

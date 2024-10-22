@@ -7,7 +7,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
@@ -25,6 +25,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatCardModule,
     MatSlideToggleModule,
     MatSidenavModule,
+    RouterModule,
   ],
 })
 export class DashboardComponent {
@@ -109,5 +110,14 @@ export class DashboardComponent {
   constructor(private router: Router) {}
   sign_out() {
     this.router.navigate(['login']);
+  }
+  to_mental_ai() {
+    this.router.navigate(['Mental AI']);
+  }
+  to_track_goal() {
+    this.router.navigate(['Track Goal']);
+  }
+  to_settings() {
+    this.router.navigate(['Settings']);
   }
 }

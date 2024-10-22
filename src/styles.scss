@@ -30,8 +30,8 @@ $dark-theme: mat.define-theme(
     (
       color: (
         theme-type: dark,
-        primary: mat.$violet-palette,
-        tertiary: mat.$blue-palette,
+        primary: mat.$orange-palette,
+        tertiary: mat.$violet-palette,
       ),
       typography: (
         brand-family: "sans-serif",
@@ -68,8 +68,8 @@ body {
 }
 
 body.light-theme {
-  @include mat.all-component-themes($mentalHealthDiary-theme);
+  @include mat.all-component-colors($mentalHealthDiary-theme);
 }
 body.dark-theme {
-  @include mat.all-component-themes($dark-theme);
+  @include mat.all-component-colors($dark-theme);
 }

@@ -20,20 +20,24 @@
             </mat-menu>
           </mat-card-title>
         </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
+        <mat-card-content class="dashboaard-card-content">
           @if (card.mobile) {
-          <div class="card_content_mobile">{{ card.card_content }}</div>
-          <div>{{ card.diary }}</div>
-          <div>{{ card.track_goal }}</div>
-          <div>{{ card.settings }}</div>
+          <div class="card_content_mobile" [routerLink]="card.card_content">
+            {{ card.card_content }}
+          </div>
+          <div [routerLink]="card.diary">{{ card.diary }}</div>
+          <div [routerLink]="card.track_goal">{{ card.track_goal }}</div>
+          <div [routerLink]="card.settings">{{ card.settings }}</div>
           } @if (!card.mobile) {
-          <div class="card-content">{{ card.card_content }}</div>
-          <div class="diary-content">{{ card.diary }}</div>
-          <div>
+          <div class="card-content" routerLink="Mental AI">
+            {{ card.card_content }}
+          </div>
+          <div class="diary-content" routerLink="diary">{{ card.diary }}</div>
+          <div [routerLink]="card.track_goal">
             {{ card.track_goal }}
           </div>
-          <div>{{ card.additional_track_goal }}</div>
-          <div>{{ card.settings }}</div>
+          <div routerLink="Track Goal">{{ card.additional_track_goal }}</div>
+          <div routerLink="Settings">{{ card.settings }}</div>
           }
         </mat-card-content>
       </mat-card>
