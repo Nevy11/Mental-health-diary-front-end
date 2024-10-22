@@ -1,1 +1,11 @@
 <p>MY diary</p>
+<div>kassy-ux</div>
+<form class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Message</mat-label>
+      <input matInput #message maxlength="256" placeholder="Ex. I need help with...">
+      <mat-hint align="start"><strong>tell me how you feel</strong> </mat-hint>
+      <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+    </mat-form-field>
+  </form>
+  
