@@ -3,6 +3,7 @@ import { Component, signal } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import {
   MatCard,
   MatCardActions,
@@ -34,6 +35,7 @@ import { Router } from '@angular/router';
     MatIcon,
     MatInputModule,
     CommonModule,
+    MatButtonModule,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
