@@ -20,11 +20,11 @@ export class LoginGuard implements CanActivate {
   ): MaybeAsync<GuardResult> {
     const isLoggedIn = this.loginService.isloggedIn;
     console.log('isLoggedIn:', isLoggedIn); // Check the login state here
-    // if (!isLoggedIn) {
-    //   this.router.navigate(['/login']); // Redirect if not logged in
-    //   return false;
-    // }
-    // return true;
+    if (!isLoggedIn) {
+      this.router.navigate(['/login']); // Redirect if not logged in
+      return false;
+    }
     return true;
+    // return this.loginService.isloggedIn;
   }
 }
