@@ -1,22 +1,60 @@
 .diary-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
+  flex-grow: 1;
+  width: 100%;
+  margin-bottom: 10px;
   }
   
   .diary-full-width {
-    width: 100%;
+    display: flex;
+  flex-direction: column;
+  height: 100vh;
+  }
+  button-container {
+    display: flex;
+    justify-content: space-between;
+  
   }
   button {
     margin-top: 10px;
     cursor: pointer;
   }
   
-  emoji-mart {
-    position: absolute;
-    z-index: 100;
+  // emoji-mart {
+    // position: absolute;
+    // z-index: 100;
+  // }
+  @media only screen and (max-width: 768px) {
+    /* Styles for mobile phones */
+    .diaryEntry {
+      display: flex;
+      justify-content: center;
+    }
   }
   
-  // .emojis{
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    /* Styles for tablets */
+    .diaryEntry{
+      margin-left: 13rem;
+      display: flex;
+      justify-content: center;
+    }
+  }
+  
+  @media only screen and (min-width: 1024px) {
+    .diaryEntry {
+      display: flex;
+      justify-content: center;
+      height: 100vh;
+    }
+  }
+  .save{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+     
+
+
+  
     
-  // }
+  

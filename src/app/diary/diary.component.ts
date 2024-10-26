@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { EmojiDialogueComponent } from './emoji-dialogue/emoji-dialogue.component';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'diary-diary',
@@ -28,7 +29,8 @@ import { EmojiDialogueComponent } from './emoji-dialogue/emoji-dialogue.componen
     MatFormFieldModule,
     CommonModule,
     MatButtonModule,
-    MatDialogModule,
+    MatDialogModule, 
+    MatIcon
   ],
   templateUrl: './diary.component.html',
   styleUrl: './diary.component.scss',
@@ -51,5 +53,16 @@ export class DiaryComponent {
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
+    
   }
+  saveDiaryEntry() {
+    
+    console.log('Diary entry saved:', this.diaryEntry);
+  }
+  startRecording() {
+  
+    console.log('Started recording...');
+  }
+
+
 }
