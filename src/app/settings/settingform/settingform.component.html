@@ -1,0 +1,16 @@
+<form [formGroup]="settingForm" (ngsubmit)="onsubmit()">
+  <mat-form-field>
+    <mat-label>Username</mat-label>
+    <input matInput formControlName="username">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="Email">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input matInput formControlName="Password">
+  </mat-form-field>
+  <button type="submit">Register</button>
+
+</form>
