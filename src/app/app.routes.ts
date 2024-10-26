@@ -7,6 +7,7 @@ import { DiaryComponent } from './diary/diary.component';
 import { AIComponent } from './ai/ai.component';
 import { GoalComponent } from './goal/goal.component';
 import { SettingsComponent } from './settings/settings.component';
+import { TestComponent } from './test/test.component';
 
 export const routes: Routes = [
   {
@@ -34,6 +35,10 @@ export const routes: Routes = [
   {
     path: 'Settings',
     component: SettingsComponent,
+  },
+  {
+    path: 'test',
+    component: TestComponent,
   },
 ];
 

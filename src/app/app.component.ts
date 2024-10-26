@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -8,6 +8,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'diary-root',
   standalone: true,
@@ -20,12 +24,17 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatCardModule,
     MatSidenavModule,
     MatSlideToggleModule,
+    FormsModule,
+    ReactiveFormsModule,
+
+    EmojiModule,
+    CommonModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  name = 'Nevy11';
+  name = 'kassy-ux';
   toggletheme() {
     if (document.body.classList.contains('light-theme')) {
       document.body.classList.remove('light-theme');
