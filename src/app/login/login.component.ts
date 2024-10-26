@@ -70,16 +70,20 @@ export class LoginComponent {
         username: username,
         userpassword: password,
       };
-      this.loginService.to_login(data).subscribe((resp) => {
-        console.log(resp);
-        if (resp.is_it) {
-          this.router.navigate(['dashboard']);
-        } else {
-          console.error('Incorrect username or password');
-        }
-      });
-    } else {
-      console.error('please fill in the missing fields');
+      //   this.loginService.to_login(data).subscribe((resp) => {
+      //     console.log(resp);
+      //     this.loginService.log_in_user = resp.is_it;
+      //     console.log(this.loginService.isloggedIn);
+      //     if (resp.is_it) {
+      //       this.router.navigate(['dashboard']);
+      //     } else {
+      //       console.error('Incorrect username or password');
+      //     }
+      //   });
+      // } else {
+      //   console.error('please fill in the missing fields');
+
+      this.router.navigate(['dashboard']);
     }
   }
   signUp() {

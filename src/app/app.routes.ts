@@ -19,33 +19,33 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    canActivate: [LoginGuard],
+    // canActivate: [LoginGuard],
   },
   { path: '', redirectTo: 'sign up', pathMatch: 'full' },
   {
     path: 'Diary',
     component: DiaryComponent,
-    canActivate: [LoginGuard],
+    // canActivate: [LoginGuard],
   },
   {
     path: 'Mental AI',
     component: AIComponent,
-    canActivate: [LoginGuard],
+    // canActivate: [LoginGuard],
   },
   {
     path: 'Track Goal',
     component: GoalComponent,
-    canActivate: [LoginGuard],
+    // canActivate: [LoginGuard],
   },
   {
     path: 'Settings',
     component: SettingsComponent,
-    canActivate: [LoginGuard],
+    // canActivate: [LoginGuard],
   },
   {
     path: 'test',
     component: TestComponent,
-    canActivate: [LoginGuard],
+    // canActivate: [LoginGuard],
   },
 ];
 

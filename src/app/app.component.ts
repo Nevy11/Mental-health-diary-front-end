@@ -34,7 +34,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  name = 'kassy-ux';
+  name = 'MHD';
   toggletheme() {
     if (document.body.classList.contains('light-theme')) {
       document.body.classList.remove('light-theme');
