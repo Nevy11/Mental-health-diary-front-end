@@ -1,9 +1,13 @@
 export interface SignUp {
-  username: String;
-  userpassword: String;
-  email: String;
+  username: string;
+  userpassword: string;
+  email: string;
 }
 
 export interface MessageReturned {
-  message: String;
+  message: string;
+}
+
+export interface IsSuccessful {
+  is_it: boolean;
 }

@@ -98,12 +98,12 @@ export class SignUpFormComponent {
 
       this.signupService.sign_up(body).subscribe((resp) => {
         console.log(resp);
-        if (resp.message === 'true') {
+        if (resp.is_it === true) {
           console.log(`User ${username} is added successfully to the system`);
           this.emailForm.reset();
           this.router.navigate(['login']);
         } else {
-          console.error('Username or password is invalid');
+          console.error('Request unsucceful');
         }
       });
     } else {

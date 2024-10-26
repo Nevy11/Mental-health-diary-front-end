@@ -16,6 +16,8 @@ import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
+import { LoginService } from './login.service';
+import { Login } from './login';
 
 @Component({
   selector: 'diary-login',
@@ -49,7 +51,11 @@ export class LoginComponent {
   }
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private loginService: LoginService
+  ) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required]],
       password: ['', Validators.required],
@@ -58,10 +64,22 @@ export class LoginComponent {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      const email = this.loginForm.get('email')?.value;
+      const username = this.loginForm.get('username')?.value;
       const password = this.loginForm.get('password')?.value;
-      console.log('Login successful with:', email, password);
-      this.router.navigate(['dashboard']);
+      let data: Login = {
+        username: username,
+        userpassword: password,
+      };
+      this.loginService.to_login(data).subscribe((resp) => {
+        console.log(resp);
+        if (resp.is_it) {
+          this.router.navigate(['dashboard']);
+        } else {
+          console.error('Incorrect username or password');
+        }
+      });
+    } else {
+      console.error('please fill in the missing fields');
     }
   }
   signUp() {
