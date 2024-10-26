@@ -1,0 +1,43 @@
+.goalform {
+  width: 100%;
+}
+
+.my-button {
+  display: flex;
+  justify-content: space-between;
+}
+
+// phone
+@media (max-width: 768px) {
+  .goalform {
+    width: 100%;
+  }
+  .formGoal {
+    margin-top: 4rem;
+    width: 100%;
+    // margin-left: 2rem;
+  }
+}
+
+// tablet
+@media (min-width: 768px) {
+  .goalform {
+    width: 100%;
+  }
+  .formGoal {
+    margin-top: 4rem;
+    width: 400px;
+    margin-left: 2rem;
+  }
+}
+
+// large screen
+@media (min-width: 1024px) {
+  .goalform {
+    width: 100%;
+  }
+  .formGoal {
+    margin-top: 4rem;
+    width: 90%;
+  }
+}

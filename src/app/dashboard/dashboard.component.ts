@@ -129,7 +129,7 @@ export class DashboardComponent {
     if (name == 'Mental AI') {
       this.to_mental_ai();
     }
-    if (name == 'Track Goal') {
+    if (name == 'Track Goal' || name == 'Goals') {
       this.to_track_goal();
     }
     if (name == 'Diary') {

@@ -1,0 +1,17 @@
+<div class="formGoal">
+  <form [formGroup]="goalForm">
+    <mat-form-field class="goalform">
+      <mat-label>Enter your Goal</mat-label>
+      <input matInput formControlName="goal" placeholder="Enter your goal" />
+      <mat-error *ngIf="goalForm.controls['goal']?.hasError('required')">
+        goal is required
+      </mat-error>
+    </mat-form-field>
+    <div class="my-button">
+      <button mat-button color="primary">clear</button>
+      <button mat-flat-button color="primary" class="goalbutton">
+        add Goal
+      </button>
+    </div>
+  </form>
+</div>

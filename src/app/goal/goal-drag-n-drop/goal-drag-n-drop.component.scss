@@ -13,6 +13,7 @@
   border-radius: 4px;
   display: block;
   overflow: hidden;
+  margin-left: 4px;
 }
 
 .list-item {
@@ -48,4 +49,9 @@
 
 .cdk-drag-placeholder {
   opacity: 0;
+}
+
+.h2 {
+  display: flex;
+  justify-content: center;
 }
