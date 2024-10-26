@@ -4,8 +4,8 @@ import { Component } from '@angular/core';
   selector: 'diary-settings',
   standalone: true,
   imports: [],
-  templateUrl: './settings.component.html',
-  styleUrl: './settings.component.scss'
+  templateUrl:
+
 })
 export class SettingsComponent {
 
