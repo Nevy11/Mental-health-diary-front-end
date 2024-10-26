@@ -1,1 +1,10 @@
-<p>ai works!</p>
+<div class="ai-container">
+    <textarea [(ngModel)]="userInput" class="ai-entry" placeholder="Am here for you"></textarea>
+    <div class="button-container">
+      
+      <button (click)="sendMessage()">Send</button>
+      <button (click)="startRecording()"><mat-icon>mic</mat-icon></button>
+    </div>
+    
+  </div>
+  
