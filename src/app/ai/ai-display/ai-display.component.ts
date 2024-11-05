@@ -9,6 +9,7 @@ import { AiService } from '../ai.service';
 import { LoginService } from '../../login/login.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'diary-ai-display',
@@ -36,7 +37,8 @@ export class AiDisplayComponent {
   constructor(
     private router: Router,
     private aiService: AiService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private matSnackBar: MatSnackBar
   ) {}
 
   sendMessage() {
@@ -70,6 +72,8 @@ export class AiDisplayComponent {
 
       // Clear input
       this.newMessage = '';
+    } else {
+      this.matSnackBar.open(`Invalid entry`, 'Close', { duration: 3000 });
     }
   }
   clear() {
