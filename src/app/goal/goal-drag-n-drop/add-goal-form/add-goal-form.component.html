@@ -1,3 +1,13 @@
+<div class="divider">
+  <mat-list>
+    @for (item of todo_stored; track $index) {
+
+    <mat-list-item>{{ item }}</mat-list-item>
+    <mat-divider></mat-divider>
+    }
+  </mat-list>
+</div>
+
 <div class="formGoal">
   <form [formGroup]="goalForm">
     <mat-form-field class="goalform">
@@ -8,8 +18,16 @@
       </mat-error>
     </mat-form-field>
     <div class="my-button">
-      <button mat-button color="primary">clear</button>
-      <button mat-flat-button color="primary" class="goalbutton">
+      <button mat-button type="button" color="primary" (click)="clear()">
+        clear
+      </button>
+      <button
+        mat-flat-button
+        color="primary"
+        class="goalbutton"
+        type="submit"
+        (click)="onSubmit()"
+      >
         add Goal
       </button>
     </div>

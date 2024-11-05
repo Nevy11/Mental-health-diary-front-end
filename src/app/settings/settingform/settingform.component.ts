@@ -1,33 +1,39 @@
 import { Component, OnInit } from '@angular/core';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'diary-settingform',
   standalone: true,
-  imports: [MatInputModule,MatFormFieldModule, ReactiveFormsModule],
+  imports: [MatInputModule, MatFormFieldModule, ReactiveFormsModule],
   templateUrl: './settingform.component.html',
-  styleUrl: './settingform.component.scss'
+  styleUrls: ['./settingform.component.scss'], // 'styleUrls' should be plural
 })
 export class SettingformComponent implements OnInit {
   settingForm!: FormGroup;
-  constructor(private fb: FormBuilder){}
+
+  constructor(private fb: FormBuilder) {}
+
   ngOnInit(): void {
-    this.settingForm = this.fb.group(
-      [{
-        username: ['', [Validators.required]]
-      },
-      {email: ['', [Validators.email, Validators.required]]},
-      {password: ['', [Validators.required]]}]
-    )
+    this.settingForm = this.fb.group({
+      username: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.email, Validators.required]),
+      password: new FormControl('', [Validators.required]),
+    });
   }
-  onsubmit(){
-    if (this.settingForm.valid){
-      console.log("Login successfull")
-    }
-    else{
-      console.log("login failed")
+
+  onSubmit() {
+    if (this.settingForm.valid) {
+      console.log('Login successful');
+    } else {
+      console.log('Login failed');
     }
   }
 }

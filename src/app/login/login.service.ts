@@ -9,6 +9,14 @@ import { Observable, tap } from 'rxjs';
 })
 export class LoginService {
   private is_logged_in: boolean = false;
+  private username: string = '';
+  set set_name_of_user(name: string) {
+    this.username = name;
+  }
+  get get_name_of_user() {
+    console.log('username: ', this.username);
+    return this.username;
+  }
   set log_in_user(data: boolean) {
     this.is_logged_in = data;
   }
@@ -20,13 +28,4 @@ export class LoginService {
     let url = 'http://localhost:8080/login_user';
     return this.http.post<IsSuccessful>(url, data);
   }
-  // to_login(data: Login): Observable<IsSuccessful> {
-  //   const url = 'http://localhost:8080/login_user';
-  //   return this.http.post<IsSuccessful>(url, data).pipe(
-  //     tap((response: IsSuccessful) => {
-  //       console.log('Login response:', response); // Debugging: Check server response
-  //       this.log_in_user = response.is_it; // Update login state
-  //     })
-  //   );
-  // }
 }

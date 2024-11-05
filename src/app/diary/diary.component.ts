@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import {
   MatFormField,
@@ -14,6 +19,11 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { EmojiDialogueComponent } from './emoji-dialogue/emoji-dialogue.component';
 import { MatIcon } from '@angular/material/icon';
+import { DiaryService } from './diary.service';
+import { LoginService } from '../login/login.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { DayRadioService } from '../goal/day-radio/day-radio.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'diary-diary',
@@ -29,17 +39,23 @@ import { MatIcon } from '@angular/material/icon';
     MatFormFieldModule,
     CommonModule,
     MatButtonModule,
-    MatDialogModule, 
-    MatIcon
+    MatDialogModule,
+    MatIcon,
   ],
   templateUrl: './diary.component.html',
   styleUrl: './diary.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DiaryComponent {
+export class DiaryComponent implements OnInit {
   diaryEntry: string = '';
   showEmojiPicker = false;
-
+  constructor(
+    private diaryService: DiaryService,
+    private loginService: LoginService,
+    private matSnackBar: MatSnackBar,
+    private dayRadioService: DayRadioService,
+    private router: Router
+  ) {}
   toggleEmojiPicker() {
     this.showEmojiPicker = !this.showEmojiPicker;
   }
@@ -53,16 +69,140 @@ export class DiaryComponent {
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
-    
   }
+
+  ngOnInit(): void {
+    this.diaryService
+      .read_diary({
+        username: this.loginService.get_name_of_user,
+      })
+      .subscribe((resp) => {
+        console.log(resp);
+        this.diaryEntry = resp.content;
+      });
+    this.diaryService.get_date().subscribe((resp) => {
+      console.log(resp);
+      console.log('Date: ', resp.date);
+    });
+    this.dayRadioService.GetCurrentDayFromBackend().subscribe((resp) => {
+      console.log(resp.day);
+    });
+  }
+
   saveDiaryEntry() {
-    
-    console.log('Diary entry saved:', this.diaryEntry);
+    let my_content!: string;
+    let date!: string;
+    let current_day!: string;
+    if (this.loginService.get_name_of_user.length > 0) {
+      this.dayRadioService.GetCurrentDayFromBackend().subscribe((resp) => {
+        console.log(resp.day);
+        current_day = resp.day;
+      });
+      this.diaryService.get_date().subscribe((resp) => {
+        console.log(resp);
+        date = resp.date;
+      });
+      this.diaryService
+        .read_diary({ username: this.loginService.get_name_of_user })
+        .subscribe((resp) => {
+          console.log(resp);
+          my_content = resp.content;
+          this.diaryService
+            .check_if_user_exists({
+              username: this.loginService.get_name_of_user,
+            })
+            .subscribe((resp) => {
+              console.log(resp);
+              if (resp.exists) {
+                console.log('Content: ', this.diaryEntry);
+                console.log('Username: ', this.loginService.get_name_of_user);
+                this.diaryService
+                  .update_diary({
+                    username: this.loginService.get_name_of_user,
+                    field: 'content',
+                    new_value:
+                      my_content +
+                      '\n' +
+                      current_day +
+                      '  ' +
+                      date +
+                      '\n' +
+                      this.diaryEntry,
+                  })
+                  .subscribe((resp) => {
+                    console.log(resp);
+
+                    if (resp.message == 'NotFound') {
+                      this.diaryService
+                        .create_diary({
+                          username: this.loginService.get_name_of_user,
+                          content:
+                            '\n' +
+                            current_day +
+                            '  ' +
+                            date +
+                            '\n' +
+                            this.diaryEntry,
+                        })
+                        .subscribe((resp) => {
+                          console.log(resp);
+                          this.matSnackBar.open(`Saved successfully`, 'Close', {
+                            duration: 3000,
+                          });
+                        });
+                    } else {
+                      console.error(resp.message);
+                    }
+                  });
+              }
+
+              if (resp.message == 'NotFound') {
+                let stored_data =
+                  '\n' + current_day + '  ' + date + '\n' + this.diaryEntry;
+                console.log(stored_data);
+                this.diaryService
+                  .create_diary({
+                    username: this.loginService.get_name_of_user,
+                    content: stored_data,
+                  })
+                  .subscribe((resp) => {
+                    console.log(resp);
+                    this.matSnackBar.open(`${resp.message}`, 'Close', {
+                      duration: 3000,
+                    });
+                  });
+              } else if (resp.exists) {
+              } else {
+                console.error(resp.message);
+              }
+            });
+          console.log('Diary entry saved:', this.diaryEntry);
+        });
+    } else {
+      console.error('Enter a valid username.');
+      this.matSnackBar.open(`Nothing to save`, 'Close', {
+        duration: 3000,
+      });
+    }
   }
   startRecording() {
-  
     console.log('Started recording...');
   }
-
-
+  clear_Diary() {
+    this.diaryService
+      .delete_diary({ username: this.loginService.get_name_of_user })
+      .subscribe((resp) => {
+        console.log(resp);
+        if (resp.success) {
+          this.matSnackBar.open(`Data is cleared successfully`, 'Close', {
+            duration: 3000,
+          });
+        } else {
+          console.log(resp.message);
+        }
+      });
+  }
+  back_to_dashboard() {
+    this.router.navigate(['dashboard']);
+  }
 }

@@ -1,6 +1,11 @@
-import { Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { map } from 'rxjs/operators';
+import { map, shareReplay } from 'rxjs/operators';
 import { AsyncPipe } from '@angular/common';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
@@ -10,6 +15,7 @@ import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { DayRadioService } from '../goal/day-radio/day-radio.service';
 
 @Component({
   selector: 'diary-dashboard',
@@ -27,8 +33,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatSidenavModule,
     RouterModule,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
   private breakpointObserver = inject(BreakpointObserver);
 
   /** Based on the screen size, switch from standard to one column per row */
@@ -109,7 +116,10 @@ export class DashboardComponent {
       ];
     })
   );
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private dayRadioService: DayRadioService
+  ) {}
   sign_out() {
     this.router.navigate(['login']);
   }
@@ -138,5 +148,9 @@ export class DashboardComponent {
     if (name == 'Settings') {
       this.to_settings();
     }
+  }
+  ngOnInit(): void {
+    this.dayRadioService.GetCurrentDayFromBackend().pipe(shareReplay(1));
+    this.dayRadioService.get_favourite_day().pipe(shareReplay(1));
   }
 }

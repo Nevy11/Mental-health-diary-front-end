@@ -60,7 +60,11 @@ $dark-theme: mat.define-theme(
 
 html,
 body {
+  margin: 0;
+  padding: 0;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 body {
   margin: 0;

@@ -1,10 +1,23 @@
-<div class="ai-container">
-    <textarea [(ngModel)]="userInput" class="ai-entry" placeholder="Am here for you"></textarea>
-    <div class="button-container">
-      
-      <button (click)="sendMessage()">Send</button>
-      <button (click)="startRecording()"><mat-icon>mic</mat-icon></button>
-    </div>
-    
+<div class="aiField">
+  <div class="title mat-display-small">Therapist is here for you</div>
+  <div>
+    <diary-ai-display></diary-ai-display>
   </div>
-  
+  <!-- <div class="ai-container">
+    <div>
+      <mat-icon (click)="startRecording()" class="mic">mic</mat-icon>
+    </div>
+    <textarea
+      [(ngModel)]="userInput"
+      class="ai-entry"
+      placeholder="Am here for you"
+    ></textarea>
+    <div class="button-container">
+      <button mat-stroked-button (click)="clear()">clear</button>
+      <button mat-stroked-button (click)="sendMessage()">Send</button>
+    </div>
+  </div>
+  <div>
+    <mat-icon (click)="toDashboard()">arrow_back</mat-icon>
+  </div> -->
+</div>

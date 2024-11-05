@@ -1,49 +1,69 @@
 .ai-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-    justify-content: center;
-  }
-  
-  .ai-entry {
-    width: 50%;
-    height: 5%;
-    margin-bottom: 10px;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  // width: 100vh;
+  justify-content: center;
+}
+
+.ai-entry {
+  width: 50%;
+  height: 5%;
+  margin-bottom: 10px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+}
+
+button {
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+  .ai-entry,
   .button-container {
-    display: flex;
-    justify-content: space-between;
+    width: 80%;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .ai-entry,
+  .button-container {
+    width: 70%;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .ai-entry,
+  .button-container {
     width: 50%;
   }
-  
-  button {
-    margin-top: 10px;
-    cursor: pointer;
-  }
-  
-  @media only screen and (max-width: 768px) {
-    .ai-entry, .button-container {
-      width: 80%;
-    }
-  }
-  
-  @media only screen and (min-width: 768px) and (max-width: 1024px) {
-    .ai-entry, .button-container {
-      width: 70%;
-    }
-  }
-  
-  @media only screen and (min-width: 1024px) {
-    .ai-entry, .button-container {
-      width: 50%;
-    }
-  }
-  
-  .save {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-  }
-  
+}
+
+.save {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.mic {
+  margin-top: 1rem;
+}
+
+// .aiField {
+//   height: 100vh;
+//   width: 100vh;
+//   display: flex;
+//   justify-content: center;
+// }
+
+.title {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}

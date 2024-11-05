@@ -1,0 +1,114 @@
+@use "@angular/material" as mat;
+@include mat.core();
+$my-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: mat.$violet-palette,
+    ),
+  )
+);
+
+.chat-container {
+  height: 500px;
+}
+
+// .chat-input-area {
+//   display: flex;
+//   justify-content: center;
+// }
+
+.chat-window {
+  height: 100%;
+  overflow-y: auto;
+  @include mat.all-component-colors($my-theme);
+}
+
+.chat-messages {
+  padding: 5px;
+}
+
+.message {
+  margin: 10px 0;
+}
+
+.user-message {
+  text-align: right;
+}
+
+.bot-message {
+  text-align: left;
+}
+
+.my-button {
+  @include mat.button-color($my-theme);
+  margin-left: 2.5rem;
+}
+
+/// Button
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .chat-input {
+    @include mat.form-field-color($my-theme);
+    width: 100%;
+  }
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .chat-input {
+    @include mat.form-field-color($my-theme);
+    width: 80%;
+  }
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    text-align: center;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .chat-input {
+    @include mat.form-field-color($my-theme);
+    width: 60%;
+  }
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    text-align: center;
+  }
+}
+
+.my-form-field {
+  display: flex;
+  justify-content: center;
+}
+.my-button-field {
+  display: flex;
+  justify-content: center;
+}
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Pushes content to the bottom */
+}
+.bottom-form {
+  padding: 15px;
+  background-color: #f8f8f8;
+  border-top: 1px solid #ccc;
+}

@@ -26,8 +26,13 @@
   }
   .formGoal {
     margin-top: 4rem;
-    width: 400px;
+    // width: 400px;
     margin-left: 2rem;
+    margin-right: 4rem;
+  }
+  .divider {
+    margin-left: 3rem;
+    margin-right: 3rem;
   }
 }
 
@@ -40,4 +45,13 @@
     margin-top: 4rem;
     width: 90%;
   }
+  .divider {
+    margin-left: 5rem;
+    margin-right: 10rem;
+  }
+}
+
+.clear-btn {
+  display: flex;
+  text-align: right;
 }

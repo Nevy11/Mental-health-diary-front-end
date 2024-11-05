@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -41,6 +41,7 @@ import { Login } from './login';
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
   hide = signal(true);
@@ -70,14 +71,17 @@ export class LoginComponent {
         username: username,
         userpassword: password,
       };
+
       this.loginService.to_login(data).subscribe((resp) => {
         console.log(resp);
         this.loginService.log_in_user = resp.is_it;
         console.log(this.loginService.isloggedIn);
         if (resp.is_it) {
+          this.loginService.set_name_of_user = username;
           this.router.navigate(['dashboard']);
         } else {
           console.error('Incorrect username or password');
+          this.loginService.set_name_of_user = '';
         }
       });
     } else {

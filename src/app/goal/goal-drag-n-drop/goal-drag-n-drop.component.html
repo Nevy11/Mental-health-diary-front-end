@@ -1,36 +1,48 @@
-<div class="container mat-typography">
-  <h2 class="h2">To do</h2>
-
-  <div
-    cdkDropList
-    #todoList="cdkDropList"
-    [cdkDropListData]="todo"
-    [cdkDropListConnectedTo]="doneList"
-    class="list"
-    (cdkDropListDropped)="drop($event)"
-  >
-    @for (item of todo; track item) {
-    <div class="list-item" cdkDrag>{{ item }}</div>
-    }
-  </div>
+<div class="raised">
+  <button mat-raised-button (click)="check_todo_and_done()" color="primary">
+    check
+  </button>
 </div>
+<div *ngIf="show_todo == true">
+  <div class="container mat-typography">
+    <h2 class="h2">To do</h2>
 
-<div class="container mat-typography">
-  <h2 class="h2">Done</h2>
-
-  <div
-    cdkDropList
-    #doneList="cdkDropList"
-    [cdkDropListData]="done"
-    [cdkDropListConnectedTo]="todoList"
-    class="list"
-    (cdkDropListDropped)="drop($event)"
-  >
-    @for (item of done; track item) {
-    <div class="list-item" cdkDrag>{{ item }}</div>
-    }
+    <div
+      cdkDropList
+      #todoList="cdkDropList"
+      [cdkDropListData]="todo"
+      [cdkDropListConnectedTo]="doneList"
+      class="list"
+      (cdkDropListDropped)="drop($event)"
+    >
+      @for (item of todo; track item) {
+      <div class="list-item" cdkDrag>{{ item }}</div>
+      }
+    </div>
   </div>
-</div>
-<div>
-  <diary-add-goal-form></diary-add-goal-form>
+
+  <div class="container mat-typography">
+    <h2 class="h2">Done</h2>
+
+    <div
+      cdkDropList
+      #doneList="cdkDropList"
+      [cdkDropListData]="done"
+      [cdkDropListConnectedTo]="todoList"
+      class="list"
+      (cdkDropListDropped)="drop($event)"
+    >
+      @for (item of done; track item) {
+      <div class="list-item" cdkDrag>{{ item }}</div>
+      }
+    </div>
+    <div class="bottom-button">
+      <button mat-stroked-button color="primary" (click)="clear()">
+        clear
+      </button>
+      <button mat-stroked-button color="primary" (click)="test_done()">
+        done
+      </button>
+    </div>
+  </div>
 </div>
