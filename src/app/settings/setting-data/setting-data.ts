@@ -3,36 +3,24 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
+import { inject } from '@angular/core';
+import { SettingDataService } from './setting-data.service';
+import { LoginService } from '../../login/login.service';
 
 // TODO: Replace this with your own data model type
 export interface AppTimetableItem {
   name: string;
-  id: number;
+  id: string;
 }
-
+export interface ReturnUserData {
+  success: boolean;
+  add_message: string;
+  message: string;
+  email: string;
+  username: string;
+}
 // TODO: replace this with real data from your application
-const EXAMPLE_DATA: AppTimetableItem[] = [
-  { id: 1, name: 'Hydrogen' },
-  { id: 2, name: 'Helium' },
-  { id: 3, name: 'Lithium' },
-  { id: 4, name: 'Beryllium' },
-  { id: 5, name: 'Boron' },
-  { id: 6, name: 'Carbon' },
-  { id: 7, name: 'Nitrogen' },
-  { id: 8, name: 'Oxygen' },
-  { id: 9, name: 'Fluorine' },
-  { id: 10, name: 'Neon' },
-  { id: 11, name: 'Sodium' },
-  { id: 12, name: 'Magnesium' },
-  { id: 13, name: 'Aluminum' },
-  { id: 14, name: 'Silicon' },
-  { id: 15, name: 'Phosphorus' },
-  { id: 16, name: 'Sulfur' },
-  { id: 17, name: 'Chlorine' },
-  { id: 18, name: 'Argon' },
-  { id: 19, name: 'Potassium' },
-  { id: 20, name: 'Calcium' },
-];
+let EXAMPLE_DATA: AppTimetableItem[] = [];
 
 /**
  * Data source for the AppTimetable view. This class should
@@ -40,14 +28,18 @@ const EXAMPLE_DATA: AppTimetableItem[] = [
  * (including sorting, pagination, and filtering).
  */
 export class AppTimetableDataSource extends DataSource<AppTimetableItem> {
+  constructor(name_user: string, email_user: string) {
+    super();
+    EXAMPLE_DATA = [
+      { id: 'Username', name: name_user },
+      { id: 'Email', name: email_user },
+      { id: 'Password', name: '******' },
+    ];
+  }
+  my_data: any;
   data: AppTimetableItem[] = EXAMPLE_DATA;
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
-
-  constructor() {
-    super();
-  }
-
   /**
    * Connect this data source to the table. The table will only update when
    * the returned stream emits new items.

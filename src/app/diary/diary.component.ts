@@ -24,6 +24,8 @@ import { LoginService } from '../login/login.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DayRadioService } from '../goal/day-radio/day-radio.service';
 import { Router } from '@angular/router';
+import { Dialog, DialogModule } from '@angular/cdk/dialog';
+import { MicDialogueComponent } from './mic-dialogue/mic-dialogue.component';
 
 @Component({
   selector: 'diary-diary',
@@ -41,6 +43,7 @@ import { Router } from '@angular/router';
     MatButtonModule,
     MatDialogModule,
     MatIcon,
+    DialogModule,
   ],
   templateUrl: './diary.component.html',
   styleUrl: './diary.component.scss',
@@ -185,9 +188,7 @@ export class DiaryComponent implements OnInit {
       });
     }
   }
-  startRecording() {
-    console.log('Started recording...');
-  }
+
   clear_Diary() {
     this.diaryService
       .delete_diary({ username: this.loginService.get_name_of_user })
@@ -204,5 +205,11 @@ export class DiaryComponent implements OnInit {
   }
   back_to_dashboard() {
     this.router.navigate(['dashboard']);
+  }
+  dialogMic = inject(Dialog);
+
+  openDialogMic(): void {
+    console.log('Started recording...');
+    this.dialogMic.open<string>(MicDialogueComponent);
   }
 }

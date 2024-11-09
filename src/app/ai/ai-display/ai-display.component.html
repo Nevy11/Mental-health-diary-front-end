@@ -4,7 +4,7 @@
     fxLayout="column"
     fxLayoutAlign="space-between stretch"
   >
-    <mat-card class="chat-window">
+    <mat-card class="chat-window" #chatWindow>
       <mat-card-header>
         <mat-card-title>Live Session</mat-card-title>
       </mat-card-header>
@@ -13,8 +13,8 @@
           <div
             class="message"
             [ngClass]="{
-              'user-message': message.user === 'Me',
-              'bot-message': message.user !== 'Me'
+              'user-message': message.user !== 'Therapist',
+              'bot-message': message.user === 'Therapist'
             }"
           >
             <span

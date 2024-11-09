@@ -4,19 +4,24 @@
 //     align-items: flex-start;
 //   }
 
-  mat-form-field{
-    width: 100%;
-  }
-  button {
-    width: 100%;
-    padding: 10px;
-    background-color: #5cb85c;
-    border: none;
-    color: white;
-    border-radius: 3px;
-    cursor: pointer;
+mat-form-field {
+  width: 100%;
+}
+button {
+  width: 100%;
+  padding: 10px;
+  // background-color: #5cb85c;
+  border: none;
+  // color: white;
+  border-radius: 3px;
+  cursor: pointer;
 }
 
 button:hover {
-    background-color: #4cae4c;
+  background-color: #4cae4c;
+}
+.my-form {
+  margin-top: 5rem;
+  display: flex;
+  justify-content: center;
 }

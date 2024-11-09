@@ -1,5 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import {
+  AfterViewChecked,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -24,58 +32,81 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     MatIconModule,
   ],
   templateUrl: './ai-display.component.html',
-  styleUrl: './ai-display.component.scss',
+  styleUrls: ['./ai-display.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AiDisplayComponent {
+export class AiDisplayComponent implements OnInit, AfterViewChecked {
+  @ViewChild('chatWindow', { static: false }) chatWindow!: ElementRef;
+
   bot_name: string = 'Therapist';
   messages = [
     { user: this.bot_name, text: 'Hello! How can I assist you today?' },
   ];
   username!: string;
   newMessage = '';
+  name_of_user!: string;
 
   constructor(
     private router: Router,
     private aiService: AiService,
     private loginService: LoginService,
-    private matSnackBar: MatSnackBar
+    private matSnackBar: MatSnackBar,
+    private cdr: ChangeDetectorRef
   ) {}
+
+  ngOnInit(): void {
+    this.name_of_user = this.loginService.get_name_of_user;
+  }
+
+  ngAfterViewChecked(): void {
+    this.scrollToBottom();
+  }
 
   sendMessage() {
     this.username = this.loginService.get_name_of_user;
+
     if (this.newMessage.trim() !== '') {
       const question = this.newMessage;
-      // Add user's message to chat
-      this.messages.push({ user: this.username, text: this.newMessage });
 
-      // // Simulate bot response
-      // setTimeout(() => {
-      //   this.messages.push({ user: 'Bot', text: 'This is a bot response.' });
-      // }, 1000);
+      // Add user's message to chat
+      this.messages = [
+        ...this.messages,
+        { user: this.username, text: this.newMessage },
+      ];
+      this.cdr.markForCheck(); // Notify Angular of change
 
       this.aiService
         .ask_model_question({ question: this.newMessage })
         .subscribe((resp) => {
           console.log(resp);
-          this.messages.push({ user: this.bot_name, text: resp.answer });
-          console.log(question);
+
+          // Add bot's response
+          this.messages = [
+            ...this.messages,
+            { user: this.bot_name, text: resp.answer },
+          ];
+          this.cdr.markForCheck(); // Notify Angular again
+
           this.aiService
             .create_ai({
               username: this.username,
               question: question,
               answer: resp.answer,
             })
-            .subscribe((resp) => {
-              console.log(resp);
+            .subscribe((createResp) => {
+              console.log(createResp);
             });
+
+          this.scrollToBottom();
         });
 
       // Clear input
       this.newMessage = '';
     } else {
-      this.matSnackBar.open(`Invalid entry`, 'Close', { duration: 3000 });
+      this.matSnackBar.open('Invalid entry', 'Close', { duration: 3000 });
     }
   }
+
   clear() {
     this.aiService
       .delete_one_ai({
@@ -88,11 +119,24 @@ export class AiDisplayComponent {
           console.log(element);
         }
       });
+    this.messages = [];
+    this.cdr.markForCheck(); // Notify Angular of change
   }
+
   startRecording() {
     console.log('Started recording...');
   }
+
   toDashboard() {
     this.router.navigate(['dashboard']);
+  }
+
+  private scrollToBottom(): void {
+    setTimeout(() => {
+      if (this.chatWindow?.nativeElement) {
+        this.chatWindow.nativeElement.scrollTop =
+          this.chatWindow.nativeElement.scrollHeight;
+      }
+    }, 0);
   }
 }

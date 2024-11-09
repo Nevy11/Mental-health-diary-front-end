@@ -1,27 +1,11 @@
-// @use "@angular/material" as mat;
-// @include mat.core();
-// $my-theme: mat.define-theme(
-//   (
-//     color: (
-//       theme-type: light,
-//       primary: mat.$violet-palette,
-//     ),
-//   )
-// );
-
 .chat-container {
   height: 500px;
 }
 
-// .chat-input-area {
-//   display: flex;
-//   justify-content: center;
-// }
-
 .chat-window {
   height: 100%;
   overflow-y: auto;
-  //   @include mat.all-component-colors($my-theme);
+  scroll-behavior: smooth;
 }
 
 .chat-messages {
@@ -41,7 +25,6 @@
 }
 
 .my-button {
-  //   @include mat.button-color($my-theme);
   margin-left: 2.5rem;
 }
 
@@ -56,7 +39,6 @@
 
 @media only screen and (max-width: 768px) {
   .chat-input {
-    // @include mat.form-field-color($my-theme);
     width: 100%;
   }
   .button-container {
@@ -69,7 +51,6 @@
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
   .chat-input {
-    // @include mat.form-field-color($my-theme);
     width: 80%;
   }
   .button-container {
@@ -82,7 +63,6 @@
 
 @media only screen and (min-width: 1024px) {
   .chat-input {
-    // @include mat.form-field-color($my-theme);
     width: 60%;
   }
   .button-container {
@@ -109,6 +89,5 @@
 }
 .bottom-form {
   padding: 15px;
-  //   background-color: #f8f8f8;
   border-top: 1px solid #ccc;
 }

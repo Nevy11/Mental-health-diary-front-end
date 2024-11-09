@@ -8,11 +8,17 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'diary-settingform',
   standalone: true,
-  imports: [MatInputModule, MatFormFieldModule, ReactiveFormsModule],
+  imports: [
+    MatInputModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+  ],
   templateUrl: './settingform.component.html',
   styleUrls: ['./settingform.component.scss'], // 'styleUrls' should be plural
 })

@@ -18,6 +18,7 @@ import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 import { Login } from './login';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'diary-login',
@@ -55,7 +56,8 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private snackBar: MatSnackBar
   ) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required]],
@@ -81,12 +83,17 @@ export class LoginComponent {
           this.router.navigate(['dashboard']);
         } else {
           console.error('Incorrect username or password');
+          this.snackBar.open(`Incorrect username or password`, 'Close', {
+            duration: 3000,
+          });
           this.loginService.set_name_of_user = '';
         }
       });
     } else {
       console.error('please fill in the missing fields');
-
+      this.snackBar.open(`Please fill in the missing fields`, 'Close', {
+        duration: 3000,
+      });
       this.router.navigate(['dashboard']);
     }
   }

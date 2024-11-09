@@ -3,7 +3,7 @@
     <button mat-button type="button" (click)="openDialog()">😀</button>
 
     <button mat-button type=" button" (click)="saveDiaryEntry()">save</button>
-    <button (click)="startRecording()"><mat-icon>mic</mat-icon></button>
+    <button (click)="openDialogMic()"><mat-icon>mic</mat-icon></button>
   </div>
   <form class="diary-form">
     <mat-form-field class="diary-full-width">
@@ -16,12 +16,12 @@
           #message
           [(ngModel)]="diaryEntry"
           name="diaryEntry"
-          maxlength="256"
+          maxlength="25600"
           placeholder=""
         ></textarea>
       </div>
       <mat-hint align="start"><strong></strong></mat-hint>
-      <mat-hint align="end">{{ diaryEntry.length }} / 256</mat-hint>
+      <mat-hint align="end">{{ diaryEntry.length }} / 25600</mat-hint>
     </mat-form-field>
   </form>
   <div class="bottom-button">
