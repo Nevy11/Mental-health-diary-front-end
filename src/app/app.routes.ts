@@ -9,6 +9,7 @@ import { GoalComponent } from './goal/goal.component';
 import { SettingsComponent } from './settings/settings.component';
 import { TestComponent } from './test/test.component';
 import { LoginGuard } from './guards/login.guard';
+import { MicDialogueComponent } from './diary/mic-dialogue/mic-dialogue.component';
 
 export const routes: Routes = [
   {
@@ -46,6 +47,10 @@ export const routes: Routes = [
     path: 'test',
     component: TestComponent,
     // canActivate: [LoginGuard],
+  },
+  {
+    path: 'Mic Diary',
+    component: MicDialogueComponent,
   },
 ];
 

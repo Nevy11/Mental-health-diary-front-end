@@ -75,9 +75,7 @@ export class LoginComponent {
       };
 
       this.loginService.to_login(data).subscribe((resp) => {
-        console.log(resp);
         this.loginService.log_in_user = resp.is_it;
-        console.log(this.loginService.isloggedIn);
         if (resp.is_it) {
           this.loginService.set_name_of_user = username;
           this.router.navigate(['dashboard']);

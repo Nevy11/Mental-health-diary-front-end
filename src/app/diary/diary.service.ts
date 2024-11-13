@@ -23,7 +23,7 @@ export class DiaryService {
     return this.http.post<DiaryReturn>(url, data);
   }
   update_diary(data: DiaryUpdate) {
-    let url = 'http://127.0.0.1:8080/diary_udpate';
+    let url = 'http://127.0.0.1:8080/diary_update';
     return this.http.patch<DiaryReturn>(url, data);
   }
   delete_diary(data: DiaryOneData) {

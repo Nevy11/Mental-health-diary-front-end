@@ -14,7 +14,6 @@ export class LoginService {
     this.username = name;
   }
   get get_name_of_user() {
-    console.log('username: ', this.username);
     return this.username;
   }
   set log_in_user(data: boolean) {

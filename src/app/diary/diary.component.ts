@@ -52,6 +52,8 @@ import { MicDialogueComponent } from './mic-dialogue/mic-dialogue.component';
 export class DiaryComponent implements OnInit {
   diaryEntry: string = '';
   showEmojiPicker = false;
+  date!: string;
+  currentDay!: String;
   constructor(
     private diaryService: DiaryService,
     private loginService: LoginService,
@@ -84,11 +86,10 @@ export class DiaryComponent implements OnInit {
         this.diaryEntry = resp.content;
       });
     this.diaryService.get_date().subscribe((resp) => {
-      console.log(resp);
-      console.log('Date: ', resp.date);
+      this.date = resp.date;
     });
     this.dayRadioService.GetCurrentDayFromBackend().subscribe((resp) => {
-      console.log(resp.day);
+      this.currentDay = resp.day;
     });
   }
 
@@ -195,6 +196,7 @@ export class DiaryComponent implements OnInit {
       .subscribe((resp) => {
         console.log(resp);
         if (resp.success) {
+          this.router.navigate(['dashboard']);
           this.matSnackBar.open(`Data is cleared successfully`, 'Close', {
             duration: 3000,
           });
@@ -209,7 +211,8 @@ export class DiaryComponent implements OnInit {
   dialogMic = inject(Dialog);
 
   openDialogMic(): void {
-    console.log('Started recording...');
-    this.dialogMic.open<string>(MicDialogueComponent);
+    // console.log('Started recording...');
+    // this.dialogMic.open<string>(MicDialogueComponent);
+    this.router.navigate(['Mic Diary']);
   }
 }
