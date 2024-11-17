@@ -2,9 +2,15 @@
   <div class="full-screen-component">
     <div class="top-section">
       <h1 class="mat-h1">{{ name }}</h1>
-
-      <div class="button">
-        <mat-slide-toggle (click)="toggletheme()">light Mode</mat-slide-toggle>
+      <div class="logOut" *ngIf="!login_page">
+        <button mat-flat-button (click)="logout()">log out</button>
+      </div>
+      <div>
+        <div class="button">
+          <mat-slide-toggle (click)="toggletheme()"
+            >light Mode</mat-slide-toggle
+          >
+        </div>
       </div>
     </div>
     <router-outlet />

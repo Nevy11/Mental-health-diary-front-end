@@ -10,6 +10,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { TestComponent } from './test/test.component';
 import { LoginGuard } from './guards/login.guard';
 import { MicDialogueComponent } from './diary/mic-dialogue/mic-dialogue.component';
+import { AiMicComponent } from './ai/ai-display/ai-mic/ai-mic.component';
 
 export const routes: Routes = [
   {
@@ -51,6 +52,10 @@ export const routes: Routes = [
   {
     path: 'Mic Diary',
     component: MicDialogueComponent,
+  },
+  {
+    path: 'Mic Ai',
+    component: AiMicComponent,
   },
 ];
 

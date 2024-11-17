@@ -3,7 +3,9 @@
     <button mat-button type="button" (click)="openDialog()">😀</button>
 
     <button mat-button type=" button" (click)="saveDiaryEntry()">save</button>
-    <button (click)="openDialogMic()"><mat-icon>mic</mat-icon></button>
+    <button mat-flat-button (click)="openDialogMic()">
+      <mat-icon>mic</mat-icon>
+    </button>
   </div>
   <form class="diary-form">
     <mat-form-field class="diary-full-width">

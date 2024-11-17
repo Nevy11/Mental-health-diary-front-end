@@ -15,24 +15,19 @@ import {
 } from '@angular/cdk/drag-drop';
 import { AddGoalService } from './add-goal-form/add-goal.service';
 import { LoginService } from '../../login/login.service';
-import { AddGoalFormComponent } from './add-goal-form/add-goal-form.component';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { DayRadioService } from '../day-radio/day-radio.service';
+import { catchError, tap } from 'rxjs';
 
 @Component({
   selector: 'diary-goal-drag-n-drop',
   templateUrl: './goal-drag-n-drop.component.html',
   styleUrl: './goal-drag-n-drop.component.scss',
   standalone: true,
-  imports: [
-    CdkDrag,
-    CdkDropList,
-    AddGoalFormComponent,
-    MatButtonModule,
-    CommonModule,
-  ],
+  imports: [CdkDrag, CdkDropList, MatButtonModule, CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GoalDragNDropComponent implements OnInit {
@@ -40,7 +35,8 @@ export class GoalDragNDropComponent implements OnInit {
     private addGoalService: AddGoalService,
     private loginService: LoginService,
     private snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private dayRadioService: DayRadioService
   ) {}
   todo: string[] = [];
   done: string[] = [];
@@ -86,110 +82,7 @@ export class GoalDragNDropComponent implements OnInit {
     console.log(`done: ${this.done}`);
     this.show_todo = true;
   }
-  Done() {
-    const username = this.loginService.get_name_of_user;
-    for (let index = 0; index < this.done.length; index++) {
-      const element = this.done[index];
-      console.log('Done element', element);
-      this.addGoalService
-        .check_done_exists({ username: username, goal_name: element })
-        .subscribe((resp) => {
-          if (resp.success) {
-            this.todo.forEach((todo_data) => {
-              if (todo_data == element) {
-                this.addGoalService
-                  .Remove_todo_goals({
-                    username: username,
-                    goal_name: element,
-                  })
-                  .subscribe((resp) => {
-                    console.log('Removes ', element, ' from the todo backend');
-                    console.log(resp);
-                  });
-              }
-            });
-            if (resp.exists) {
-              console.error('The selected value exists');
-              this.addGoalService
-                .update_done_goal({
-                  username: username,
-                  old_value: element,
-                  new_value: element,
-                })
-                .subscribe((resp) => {
-                  console.log(resp);
-                });
-            } else {
-              console.log("Doesn't match");
-              this.addGoalService
-                .create_done_goal({
-                  username: username,
-                  goal_name: element,
-                })
-                .subscribe((resp) => {
-                  console.log(resp);
-                });
-            }
-          } else {
-            console.error(resp.message);
-          }
-        });
-    }
-    // this.addGoalService
-    //   .clear_todo_Goals({ username: username })
-    //   .subscribe((resp) => {
-    //     console.log(resp);
-    //   });
-    for (let index = 0; index < this.todo.length; index++) {
-      const element = this.todo[index];
-      this.addGoalService
-        .check_todo_exists({ username: username, goal_name: element })
-        .subscribe((resp) => {
-          if (resp.success) {
-            if (resp.exists) {
-              console.error('The selected value exists');
-              this.addGoalService
-                .update_todo_from_backend({
-                  username: username,
-                  old_value: element,
-                  new_value: element,
-                })
-                .subscribe((resp) => {
-                  console.log(resp);
-                });
-            } else {
-              this.addGoalService
-                .add_todo_Goal({
-                  username: username,
-                  goal_name: element,
-                })
-                .subscribe((resp) => {
-                  console.log(resp);
-                });
-              this.done.forEach((done_data) => {
-                if (done_data == element) {
-                  this.addGoalService
-                    .delete_one_done_goal({
-                      username: username,
-                      goal_name: element,
-                    })
-                    .subscribe((resp) => {
-                      console.log(resp);
-                    });
-                }
-              });
-            }
-          } else {
-            console.error(resp.message);
-          }
-        });
-    }
-    // this.addGoalService
-    //   .clear_todo_Goals({ username: username })
-    //   .subscribe((resp) => {
-    //     console.log(resp);
-    //   });
-  }
+
   update_to_do() {
     const username = this.loginService.get_name_of_user;
   }
@@ -340,6 +233,27 @@ export class GoalDragNDropComponent implements OnInit {
     }
     this.router.navigate(['dashboard']);
     if (this.todo.length == 0 && this.done.length > 0) {
+      const username = this.loginService.get_name_of_user;
+      this.addGoalService.clear_todo_Goals({ username }).subscribe((resp) => {
+        console.log(resp);
+      });
+      this.addGoalService
+        .delete_all_done_goals({ username: username })
+        .subscribe((resp) => {
+          console.log(resp);
+        });
+      this.addGoalService.clearGoals();
+      this.dayRadioService
+        .GetCurrentDayFromBackend()
+        .pipe(
+          tap((current_day) => {
+            this.dayRadioService
+              .create_favourite_day(current_day.day)
+              .pipe(tap((resp) => console.log(resp)))
+              .subscribe();
+          })
+        )
+        .subscribe();
       this.snackBar.open(
         `Hurray!! ${username}!, You have achieved all your goals.`,
         'Close',

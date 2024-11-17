@@ -26,6 +26,7 @@ import { DayRadioService } from '../goal/day-radio/day-radio.service';
 import { Router } from '@angular/router';
 import { Dialog, DialogModule } from '@angular/cdk/dialog';
 import { MicDialogueComponent } from './mic-dialogue/mic-dialogue.component';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'diary-diary',
@@ -77,20 +78,27 @@ export class DiaryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.diaryService
-      .read_diary({
-        username: this.loginService.get_name_of_user,
-      })
-      .subscribe((resp) => {
-        console.log(resp);
-        this.diaryEntry = resp.content;
-      });
     this.diaryService.get_date().subscribe((resp) => {
       this.date = resp.date;
     });
     this.dayRadioService.GetCurrentDayFromBackend().subscribe((resp) => {
       this.currentDay = resp.day;
     });
+    this.diaryService
+      .read_diary({
+        username: this.loginService.get_name_of_user,
+      })
+      .subscribe((resp) => {
+        console.log(resp);
+        this.diaryEntry =
+          resp.content +
+          '\n\n' +
+          '   ' +
+          this.currentDay +
+          ' ' +
+          this.date +
+          '\n\n';
+      });
   }
 
   saveDiaryEntry() {
@@ -121,18 +129,29 @@ export class DiaryComponent implements OnInit {
                 console.log('Content: ', this.diaryEntry);
                 console.log('Username: ', this.loginService.get_name_of_user);
                 this.diaryService
+                  .delete_diary({
+                    username: this.loginService.get_name_of_user,
+                  })
+                  .pipe(
+                    tap((resp) => {
+                      console.log(resp);
+                    })
+                  )
+                  .subscribe();
+                this.diaryService
                   .update_diary({
                     username: this.loginService.get_name_of_user,
                     field: 'content',
                     new_value:
                       my_content +
-                      '\n' +
-                      current_day +
-                      '  ' +
-                      date +
-                      '\n' +
+                      // '\n' +
+                      // current_day +
+                      // '  ' +
+                      // date +
+                      // '\n' +
                       this.diaryEntry,
                   })
+
                   .subscribe((resp) => {
                     console.log(resp);
 
@@ -141,11 +160,11 @@ export class DiaryComponent implements OnInit {
                         .create_diary({
                           username: this.loginService.get_name_of_user,
                           content:
-                            '\n' +
-                            current_day +
-                            '  ' +
-                            date +
-                            '\n' +
+                            // '\n' +
+                            // current_day +
+                            // '  ' +
+                            // date +
+                            // '\n' +
                             this.diaryEntry,
                         })
                         .subscribe((resp) => {
@@ -162,7 +181,9 @@ export class DiaryComponent implements OnInit {
 
               if (resp.message == 'NotFound') {
                 let stored_data =
-                  '\n' + current_day + '  ' + date + '\n' + this.diaryEntry;
+                  '\n' +
+                  //  current_day + '  ' + date + '\n' +
+                  this.diaryEntry;
                 console.log(stored_data);
                 this.diaryService
                   .create_diary({

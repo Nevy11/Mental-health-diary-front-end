@@ -43,6 +43,7 @@ export interface ReturnAi {
 
 export interface QuestionModel {
   question: string;
+  context: string;
 }
 export interface AnswerModel {
   answer: string;

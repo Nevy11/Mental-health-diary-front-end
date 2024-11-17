@@ -28,6 +28,9 @@
     <div class="chat-input-area" fxLayout="row">
       <div class="bottom-form">
         <div class="my-form-field">
+          <div style="float: left; margin-right: 3rem; margin-top: 1rem">
+            <mat-icon (click)="toDashboard()">arrow_back</mat-icon>
+          </div>
           <mat-form-field class="chat-input" fxFlex="80">
             <mat-label>Enter some input</mat-label>
 
@@ -39,17 +42,12 @@
               (keyup.enter)="sendMessage()"
             />
           </mat-form-field>
+          <div style="float: right; margin-left: 3rem; margin-top: 1rem">
+            <mat-icon (click)="startRecording()"> mic </mat-icon>
+          </div>
         </div>
       </div>
 
-      <!-- <button
-      mat-raised-button
-      color="primary"
-      (click)="sendMessage()"
-      class="my-button"
-    >
-      Send 
-    </button> -->
       <div class="my-button-field">
         <div class="button-container">
           <button mat-stroked-button color="primary" (click)="clear()">
@@ -62,7 +60,7 @@
       </div>
     </div>
   </div>
-  <div>
+  <!-- <div>
     <mat-icon (click)="toDashboard()">arrow_back</mat-icon>
-  </div>
+  </div> -->
 </div>

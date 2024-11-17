@@ -5,6 +5,7 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
+  NgZone,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -18,6 +19,8 @@ import { LoginService } from '../../login/login.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { tap } from 'rxjs';
+import { AiDisplayService } from './ai-display.service';
 
 @Component({
   selector: 'diary-ai-display',
@@ -51,20 +54,48 @@ export class AiDisplayComponent implements OnInit, AfterViewChecked {
     private aiService: AiService,
     private loginService: LoginService,
     private matSnackBar: MatSnackBar,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private zone: NgZone,
+    private aiDisplayService: AiDisplayService
   ) {}
 
   ngOnInit(): void {
     this.name_of_user = this.loginService.get_name_of_user;
+    this.aiService
+      .read_one_ai({ username: this.name_of_user })
+      .pipe(
+        tap((resp) => {
+          resp.data.forEach((data) => {
+            console.log(this.messages);
+            this.messages = [
+              ...this.messages,
+              {
+                user: this.loginService.get_name_of_user,
+                text: data.question,
+              },
+              {
+                user: this.bot_name,
+                text: data.answer,
+              },
+            ];
+          });
+        })
+      )
+      .subscribe();
+    this.cdr.detectChanges();
   }
 
   ngAfterViewChecked(): void {
+    if (this.chatWindow) {
+      console.log('Chat window is initialized');
+    }
     this.scrollToBottom();
+    this.cdr.detectChanges();
   }
 
   sendMessage() {
     this.username = this.loginService.get_name_of_user;
-
+    this.cdr.detectChanges();
     if (this.newMessage.trim() !== '') {
       const question = this.newMessage;
 
@@ -75,29 +106,43 @@ export class AiDisplayComponent implements OnInit, AfterViewChecked {
       ];
       this.cdr.markForCheck(); // Notify Angular of change
 
-      this.aiService
-        .ask_model_question({ question: this.newMessage })
+      this.aiDisplayService
+        .query({ question: this.newMessage })
         .subscribe((resp) => {
           console.log(resp);
+          if (resp.success) {
+            this.aiService
+              .ask_model_question({
+                question: question,
+                context: resp.context,
+              })
+              .subscribe((resp) => {
+                this.messages = [
+                  ...this.messages,
+                  { user: this.bot_name, text: resp.answer },
+                ];
+                this.cdr.markForCheck(); // Notify Angular again
+
+                this.aiService
+                  .create_ai({
+                    username: this.username,
+                    question: question,
+                    answer: resp.answer,
+                  })
+                  .subscribe((createResp) => {
+                    console.log(createResp);
+                  });
+              });
+          } else {
+            this.matSnackBar.open(`Internet connection Error`, 'Close', {
+              duration: 3000,
+            });
+          }
 
           // Add bot's response
-          this.messages = [
-            ...this.messages,
-            { user: this.bot_name, text: resp.answer },
-          ];
-          this.cdr.markForCheck(); // Notify Angular again
-
-          this.aiService
-            .create_ai({
-              username: this.username,
-              question: question,
-              answer: resp.answer,
-            })
-            .subscribe((createResp) => {
-              console.log(createResp);
-            });
 
           this.scrollToBottom();
+          this.cdr.detectChanges();
         });
 
       // Clear input
@@ -125,6 +170,7 @@ export class AiDisplayComponent implements OnInit, AfterViewChecked {
 
   startRecording() {
     console.log('Started recording...');
+    this.router.navigate(['Mic Ai']);
   }
 
   toDashboard() {
@@ -132,11 +178,13 @@ export class AiDisplayComponent implements OnInit, AfterViewChecked {
   }
 
   private scrollToBottom(): void {
-    setTimeout(() => {
-      if (this.chatWindow?.nativeElement) {
-        this.chatWindow.nativeElement.scrollTop =
-          this.chatWindow.nativeElement.scrollHeight;
-      }
-    }, 0);
+    this.zone.runOutsideAngular(() => {
+      setTimeout(() => {
+        if (this.chatWindow?.nativeElement) {
+          this.chatWindow.nativeElement.scrollTop =
+            this.chatWindow.nativeElement.scrollHeight;
+        }
+      }, 0);
+    });
   }
 }

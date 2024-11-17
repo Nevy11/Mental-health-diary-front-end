@@ -1,1 +1,8 @@
-<p>ai-mic works!</p>
+<div class="container">
+  <div>
+    <mat-icon (click)="convert_audio_text()">mic</mat-icon>
+  </div>
+  @if (show_spinner) {
+  <mat-spinner></mat-spinner>
+  }
+</div>

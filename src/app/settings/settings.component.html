@@ -24,6 +24,16 @@
       </mat-form-field>
             -->
 
-<diary-setting-data></diary-setting-data>
+<div>
+  <diary-data-settings></diary-data-settings>
+</div>
+@if (show_form) {
+<div>
+  <diary-settingform></diary-settingform>
+</div>
+} @if (!show_form) {
+<div class="logOut">
+  <button mat-flat-button (click)="update_settings()">show_form</button>
+</div>
 
-<diary-settingform></diary-settingform>
+}

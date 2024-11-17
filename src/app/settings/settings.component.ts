@@ -1,21 +1,23 @@
 import { Component } from '@angular/core';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { SettingformComponent } from './settingform/settingform.component';
-import { SettingDataComponent } from './setting-data/setting-data.component';
-import { MatTableModule } from '@angular/material/table';
+import { Router } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { DataSettingsComponent } from './data-settings/data-settings.component';
 
 @Component({
   selector: 'diary-settings',
   standalone: true,
-  imports: [
-    MatFormFieldModule,
-    MatInputModule,
-    SettingformComponent,
-    SettingDataComponent,
-    MatTableModule,
-  ],
+  imports: [SettingformComponent, MatButtonModule, DataSettingsComponent],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.scss',
 })
-export class SettingsComponent {}
+export class SettingsComponent {
+  constructor(private router: Router) {}
+  logout() {
+    this.router.navigate(['login']);
+  }
+  show_form: boolean = false;
+  update_settings() {
+    this.show_form = !this.show_form;
+  }
+}

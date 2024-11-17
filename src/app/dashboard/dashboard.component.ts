@@ -16,6 +16,7 @@ import { Router, RouterModule } from '@angular/router';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { DayRadioService } from '../goal/day-radio/day-radio.service';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'diary-dashboard',
@@ -32,6 +33,7 @@ import { DayRadioService } from '../goal/day-radio/day-radio.service';
     MatSlideToggleModule,
     MatSidenavModule,
     RouterModule,
+    MatTooltipModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -50,6 +52,7 @@ export class DashboardComponent implements OnInit {
             mobile: true,
             card_content: 'Speak or write to mental gpt.',
             button_name: 'to_mental_ai',
+            tooltip: 'One on One with your therapist',
           },
           {
             title: 'Diary',
@@ -57,6 +60,7 @@ export class DashboardComponent implements OnInit {
             rows: 1,
             mobile: true,
             diary: 'Note all your feelings, emotions, and behaviour',
+            tooltip: 'Enter everything you are feeling',
           },
           {
             title: 'Goals',
@@ -66,6 +70,7 @@ export class DashboardComponent implements OnInit {
             track_goal:
               'Enter you goals, try improving yourself, both mentally and physically. ',
             additional_track_goal: 'Update your goals',
+            tooltip: 'Track your goals',
           },
           {
             title: 'Settings',
@@ -73,6 +78,7 @@ export class DashboardComponent implements OnInit {
             rows: 1,
             mobile: true,
             settings: 'Update your username, email and password',
+            tooltip: 'View and update your settings',
           },
         ];
       }
@@ -86,12 +92,14 @@ export class DashboardComponent implements OnInit {
           card_content:
             "Talk to me about all of what you are feeling right now and i'll help you. \n Save the cost that you are planning to hire a therapist. \n\n ",
           button_name: 'to_mental_ai',
+          tooltip: 'Speak to me Your therapist',
         },
         {
           title: 'Diary',
           cols: 1,
           rows: 1,
           mobile: false,
+          tooltip: 'Enter what your are feeling',
           diary:
             "Write all of what you are feeling right now to rembember your past. \n Wait, You don't need to type to write all of what you are feeling, we'll do that for you. Just speak as if you are speaking to a real therapist.",
         },
@@ -100,6 +108,7 @@ export class DashboardComponent implements OnInit {
           cols: 1,
           rows: 2,
           mobile: false,
+          tooltip: 'Update your goals, and achieve them',
           track_goal:
             'Enter you goals, try improving yourself, both mentally and physically. Set your goals, for example, If you have social anxiety, talk to 5 people this week, and in the goal area, if you achieve, carry your goal from todo section to done; then save your update. This enables and helps you to improve your self every day. Do not forget to become the best version of yourself!',
           additional_track_goal:
@@ -110,6 +119,7 @@ export class DashboardComponent implements OnInit {
           cols: 1,
           rows: 1,
           mobile: false,
+          tooltip: 'Update your settings',
           settings:
             'view your user settings, update your username, email and password.',
         },

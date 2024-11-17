@@ -1,40 +1,40 @@
-import { Component, NgModule } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { SignUpComponent } from './sign-up/sign-up.component';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatOption } from '@angular/material/core';
-import { MatInputModule } from '@angular/material/input';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  OnChanges,
+  OnInit,
+} from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { CommonModule } from '@angular/common';
+import { DataSettingsService } from './settings/data-settings/data-settings.service';
 @Component({
   selector: 'diary-root',
   standalone: true,
   imports: [
     RouterOutlet,
-    SignUpComponent,
-    MatFormFieldModule,
-    MatInputModule,
     MatButtonModule,
-    MatCardModule,
     MatSidenavModule,
     MatSlideToggleModule,
-    FormsModule,
-    ReactiveFormsModule,
-
-    EmojiModule,
     CommonModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   name = 'MHD';
+
+  constructor(
+    private router: Router,
+    private settingService: DataSettingsService,
+    private cdr: ChangeDetectorRef
+  ) {}
+  logout() {
+    this.router.navigate(['login']);
+  }
   toggletheme() {
     if (document.body.classList.contains('light-theme')) {
       document.body.classList.remove('light-theme');
@@ -43,5 +43,11 @@ export class AppComponent {
       document.body.classList.remove('dark-theme');
       document.body.classList.add('light-theme');
     }
+  }
+  login_page!: boolean;
+  ngAfterViewInit(): void {
+    console.log('Ngonchanges is called');
+    this.login_page = this.settingService.get_login_page;
+    this.cdr.detectChanges();
   }
 }

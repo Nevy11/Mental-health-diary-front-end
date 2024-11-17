@@ -1,0 +1,28 @@
+<cdk-table [dataSource]="dataSource">
+  <!-- Position Column -->
+  <ng-container cdkColumnDef="id">
+    <cdk-header-cell *cdkHeaderCellDef> id </cdk-header-cell>
+    <cdk-cell *cdkCellDef="let element"> {{ element.id }} </cdk-cell>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container cdkColumnDef="username">
+    <cdk-header-cell *cdkHeaderCellDef> username </cdk-header-cell>
+    <cdk-cell *cdkCellDef="let element"> {{ element.username }} </cdk-cell>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container cdkColumnDef="email">
+    <cdk-header-cell *cdkHeaderCellDef> email </cdk-header-cell>
+    <cdk-cell *cdkCellDef="let element"> {{ element.email }} </cdk-cell>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container cdkColumnDef="password">
+    <cdk-header-cell *cdkHeaderCellDef> password </cdk-header-cell>
+    <cdk-cell *cdkCellDef="let element"> {{ element.password }} </cdk-cell>
+  </ng-container>
+
+  <cdk-header-row *cdkHeaderRowDef="displayedColumns"></cdk-header-row>
+  <cdk-row *cdkRowDef="let row; columns: displayedColumns"></cdk-row>
+</cdk-table>

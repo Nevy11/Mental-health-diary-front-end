@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -19,6 +24,7 @@ import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 import { Login } from './login';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DataSettingsService } from '../settings/data-settings/data-settings.service';
 
 @Component({
   selector: 'diary-login',
@@ -44,7 +50,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './login.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   hide = signal(true);
 
   clickEvent(event: MouseEvent) {
@@ -57,7 +63,8 @@ export class LoginComponent {
     private fb: FormBuilder,
     private router: Router,
     private loginService: LoginService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private settingService: DataSettingsService
   ) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required]],
@@ -79,6 +86,7 @@ export class LoginComponent {
         if (resp.is_it) {
           this.loginService.set_name_of_user = username;
           this.router.navigate(['dashboard']);
+          this.settingService.set_login_page = false;
         } else {
           console.error('Incorrect username or password');
           this.snackBar.open(`Incorrect username or password`, 'Close', {
@@ -97,5 +105,8 @@ export class LoginComponent {
   }
   signUp() {
     this.router.navigate(['sign up']);
+  }
+  ngOnInit(): void {
+    this.settingService.set_login_page = true;
   }
 }
