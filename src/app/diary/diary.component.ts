@@ -91,13 +91,7 @@ export class DiaryComponent implements OnInit {
       .subscribe((resp) => {
         console.log(resp);
         this.diaryEntry =
-          resp.content +
-          '\n\n' +
-          '   ' +
-          this.currentDay +
-          ' ' +
-          this.date +
-          '\n\n';
+          this.currentDay + ' ' + this.date + '\n\n' + resp.content + '  ';
       });
   }
 
