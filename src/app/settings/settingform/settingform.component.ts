@@ -11,16 +11,15 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'diary-settingform',
-  standalone: true,
-  imports: [
-    MatInputModule,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-  ],
-  templateUrl: './settingform.component.html',
-  styleUrls: ['./settingform.component.scss'], // 'styleUrls' should be plural
+    selector: 'diary-settingform',
+    imports: [
+        MatInputModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+    ],
+    templateUrl: './settingform.component.html',
+    styleUrls: ['./settingform.component.scss']
 })
 export class SettingformComponent implements OnInit {
   settingForm!: FormGroup;

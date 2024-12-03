@@ -6,12 +6,11 @@ import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { EmojiComponent } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 
 @Component({
-  selector: 'diary-emoji-dialogue',
-  standalone: true,
-  imports: [EmojiComponent, PickerModule, MatDialogModule, MatButtonModule],
-  templateUrl: './emoji-dialogue.component.html',
-  styleUrl: './emoji-dialogue.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'diary-emoji-dialogue',
+    imports: [EmojiComponent, PickerModule, MatDialogModule, MatButtonModule],
+    templateUrl: './emoji-dialogue.component.html',
+    styleUrl: './emoji-dialogue.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmojiDialogueComponent {
   diaryEntry: string = '';

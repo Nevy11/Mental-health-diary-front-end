@@ -27,28 +27,27 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { DataSettingsService } from '../settings/data-settings/data-settings.service';
 
 @Component({
-  selector: 'diary-login',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    MatCard,
-    MatLabel,
-    MatCardContent,
-    MatCardHeader,
-    MatError,
-    MatFormField,
-    MatCardTitle,
-    MatCardHeader,
-    MatCardFooter,
-    MatCardActions,
-    MatIcon,
-    MatInputModule,
-    CommonModule,
-    MatButtonModule,
-  ],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'diary-login',
+    imports: [
+        ReactiveFormsModule,
+        MatCard,
+        MatLabel,
+        MatCardContent,
+        MatCardHeader,
+        MatError,
+        MatFormField,
+        MatCardTitle,
+        MatCardHeader,
+        MatCardFooter,
+        MatCardActions,
+        MatIcon,
+        MatInputModule,
+        CommonModule,
+        MatButtonModule,
+    ],
+    templateUrl: './login.component.html',
+    styleUrl: './login.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent implements OnInit {
   hide = signal(true);

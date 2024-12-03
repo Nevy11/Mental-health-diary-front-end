@@ -14,53 +14,49 @@ import {
   trigger,
 } from '@angular/animations';
 @Component({
-  selector: 'diary-goal',
-  standalone: true,
-  imports: [
-    GoalDragNDropComponent,
-    DayRadioComponent,
-    MatIconModule,
-    AddGoalFormComponent,
-  ],
-  templateUrl: './goal.component.html',
-  styleUrl: './goal.component.scss',
-  animations: [
-    trigger('fadeInOut', [
-      state('void', style({ opacity: 0 })),
-      transition(':enter', [animate('0.5s ease-in')]),
-      transition(':leave', [animate('0.5s ease-out')]),
-    ]),
-    trigger('slideInOut', [
-      transition(':enter', [
-        style({ transform: 'translateX(-100%)' }),
-        animate('300ms ease-out', style({ transform: 'translateX(0%)' })),
-      ]),
-      transition(':leave', [
-        animate('300ms ease-in', style({ transform: 'translateX(-100%)' })),
-      ]),
-    ]),
-    trigger('scaleInOut', [
-      transition(':enter', [
-        style({ transform: 'scale(0)' }),
-        animate('1s ease-out', style({ transform: 'scale(0)' })),
-      ]),
-      transition(':leave', [
-        animate('1s ease-in', style({ transform: 'scale(0)' })),
-      ]),
-    ]),
-    trigger('bounce', [
-      transition(':enter', [
-        animate(
-          '1s ease-in',
-          keyframes([
-            style({ transform: 'translateY(0)', offset: 0 }),
-            style({ transform: 'translateY(-30px)', offset: 0.5 }),
-            style({ transform: 'translateY(0)', offset: 1.0 }),
-          ])
-        ),
-      ]),
-    ]),
-  ],
+    selector: 'diary-goal',
+    imports: [
+        GoalDragNDropComponent,
+        DayRadioComponent,
+        MatIconModule,
+        AddGoalFormComponent,
+    ],
+    templateUrl: './goal.component.html',
+    styleUrl: './goal.component.scss',
+    animations: [
+        trigger('fadeInOut', [
+            state('void', style({ opacity: 0 })),
+            transition(':enter', [animate('0.5s ease-in')]),
+            transition(':leave', [animate('0.5s ease-out')]),
+        ]),
+        trigger('slideInOut', [
+            transition(':enter', [
+                style({ transform: 'translateX(-100%)' }),
+                animate('300ms ease-out', style({ transform: 'translateX(0%)' })),
+            ]),
+            transition(':leave', [
+                animate('300ms ease-in', style({ transform: 'translateX(-100%)' })),
+            ]),
+        ]),
+        trigger('scaleInOut', [
+            transition(':enter', [
+                style({ transform: 'scale(0)' }),
+                animate('1s ease-out', style({ transform: 'scale(0)' })),
+            ]),
+            transition(':leave', [
+                animate('1s ease-in', style({ transform: 'scale(0)' })),
+            ]),
+        ]),
+        trigger('bounce', [
+            transition(':enter', [
+                animate('1s ease-in', keyframes([
+                    style({ transform: 'translateY(0)', offset: 0 }),
+                    style({ transform: 'translateY(-30px)', offset: 0.5 }),
+                    style({ transform: 'translateY(0)', offset: 1.0 }),
+                ])),
+            ]),
+        ]),
+    ]
 })
 export class GoalComponent implements OnInit {
   constructor(

@@ -19,23 +19,22 @@ import { DayRadioService } from '../goal/day-radio/day-radio.service';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
-  selector: 'diary-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss',
-  standalone: true,
-  imports: [
-    AsyncPipe,
-    MatGridListModule,
-    MatMenuModule,
-    MatIconModule,
-    MatButtonModule,
-    MatCardModule,
-    MatSlideToggleModule,
-    MatSidenavModule,
-    RouterModule,
-    MatTooltipModule,
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'diary-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrl: './dashboard.component.scss',
+    imports: [
+        AsyncPipe,
+        MatGridListModule,
+        MatMenuModule,
+        MatIconModule,
+        MatButtonModule,
+        MatCardModule,
+        MatSlideToggleModule,
+        MatSidenavModule,
+        RouterModule,
+        MatTooltipModule,
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent implements OnInit {
   private breakpointObserver = inject(BreakpointObserver);

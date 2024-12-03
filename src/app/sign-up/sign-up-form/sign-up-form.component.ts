@@ -32,19 +32,18 @@ function passwordsMatchValidator(): ValidatorFn {
 }
 
 @Component({
-  selector: 'diary-sign-up-form',
-  standalone: true,
-  imports: [
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule,
-    FormsModule,
-    ReactiveFormsModule,
-    CommonModule,
-  ],
-  templateUrl: './sign-up-form.component.html',
-  styleUrl: './sign-up-form.component.scss',
+    selector: 'diary-sign-up-form',
+    imports: [
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatIconModule,
+        FormsModule,
+        ReactiveFormsModule,
+        CommonModule,
+    ],
+    templateUrl: './sign-up-form.component.html',
+    styleUrl: './sign-up-form.component.scss'
 })
 export class SignUpFormComponent {
   emailForm!: FormGroup;

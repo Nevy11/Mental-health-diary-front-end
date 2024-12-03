@@ -23,20 +23,19 @@ import { tap } from 'rxjs';
 import { AiDisplayService } from './ai-display.service';
 
 @Component({
-  selector: 'diary-ai-display',
-  standalone: true,
-  imports: [
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    MatCardModule,
-    CommonModule,
-    MatButtonModule,
-    MatIconModule,
-  ],
-  templateUrl: './ai-display.component.html',
-  styleUrls: ['./ai-display.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'diary-ai-display',
+    imports: [
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule,
+        MatCardModule,
+        CommonModule,
+        MatButtonModule,
+        MatIconModule,
+    ],
+    templateUrl: './ai-display.component.html',
+    styleUrls: ['./ai-display.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AiDisplayComponent implements OnInit, AfterViewChecked {
   @ViewChild('chatWindow', { static: false }) chatWindow!: ElementRef;

@@ -5,11 +5,10 @@ import { Router, RouterModule } from '@angular/router';
 import { DataSettingsService } from '../settings/data-settings/data-settings.service';
 
 @Component({
-  selector: 'diary-sign-up',
-  standalone: true,
-  imports: [MatButtonModule, SignUpFormComponent, RouterModule],
-  templateUrl: './sign-up.component.html',
-  styleUrl: './sign-up.component.scss',
+    selector: 'diary-sign-up',
+    imports: [MatButtonModule, SignUpFormComponent, RouterModule],
+    templateUrl: './sign-up.component.html',
+    styleUrl: './sign-up.component.scss'
 })
 export class SignUpComponent implements OnInit, OnDestroy {
   constructor(

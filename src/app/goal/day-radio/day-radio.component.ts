@@ -6,11 +6,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 @Component({
-  selector: 'diary-day-radio',
-  standalone: true,
-  imports: [MatRadioModule, FormsModule, MatButtonModule],
-  templateUrl: './day-radio.component.html',
-  styleUrl: './day-radio.component.scss',
+    selector: 'diary-day-radio',
+    imports: [MatRadioModule, FormsModule, MatButtonModule],
+    templateUrl: './day-radio.component.html',
+    styleUrl: './day-radio.component.scss'
 })
 export class DayRadioComponent implements OnInit {
   favourite_day!: string;

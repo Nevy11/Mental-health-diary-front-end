@@ -22,11 +22,10 @@ const ELEMENT_DATA: PeriodicElement[] = [
 ];
 
 @Component({
-  selector: 'diary-data-settings',
-  standalone: true,
-  imports: [CdkTableModule],
-  templateUrl: './data-settings.component.html',
-  styleUrl: './data-settings.component.scss',
+    selector: 'diary-data-settings',
+    imports: [CdkTableModule],
+    templateUrl: './data-settings.component.html',
+    styleUrl: './data-settings.component.scss'
 })
 export class DataSettingsComponent implements OnInit {
   constructor(

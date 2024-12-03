@@ -19,21 +19,20 @@ import { MatListModule } from '@angular/material/list';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'diary-add-goal-form',
-  standalone: true,
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    CommonModule,
-    MatDividerModule,
-    MatListModule,
-  ],
-  templateUrl: './add-goal-form.component.html',
-  styleUrl: './add-goal-form.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'diary-add-goal-form',
+    imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        CommonModule,
+        MatDividerModule,
+        MatListModule,
+    ],
+    templateUrl: './add-goal-form.component.html',
+    styleUrl: './add-goal-form.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddGoalFormComponent implements OnInit {
   goalForm!: FormGroup;

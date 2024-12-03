@@ -29,26 +29,25 @@ import { MicDialogueComponent } from './mic-dialogue/mic-dialogue.component';
 import { tap } from 'rxjs';
 
 @Component({
-  selector: 'diary-diary',
-  standalone: true,
-  imports: [
-    MatHint,
-    MatLabel,
-    MatFormField,
-    MatMenuModule,
-    MatInputModule,
-    PickerModule,
-    FormsModule,
-    MatFormFieldModule,
-    CommonModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatIcon,
-    DialogModule,
-  ],
-  templateUrl: './diary.component.html',
-  styleUrl: './diary.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'diary-diary',
+    imports: [
+        MatHint,
+        MatLabel,
+        MatFormField,
+        MatMenuModule,
+        MatInputModule,
+        PickerModule,
+        FormsModule,
+        MatFormFieldModule,
+        CommonModule,
+        MatButtonModule,
+        MatDialogModule,
+        MatIcon,
+        DialogModule,
+    ],
+    templateUrl: './diary.component.html',
+    styleUrl: './diary.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DiaryComponent implements OnInit {
   diaryEntry: string = '';

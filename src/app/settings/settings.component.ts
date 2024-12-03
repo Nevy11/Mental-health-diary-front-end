@@ -5,11 +5,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { DataSettingsComponent } from './data-settings/data-settings.component';
 
 @Component({
-  selector: 'diary-settings',
-  standalone: true,
-  imports: [SettingformComponent, MatButtonModule, DataSettingsComponent],
-  templateUrl: './settings.component.html',
-  styleUrl: './settings.component.scss',
+    selector: 'diary-settings',
+    imports: [SettingformComponent, MatButtonModule, DataSettingsComponent],
+    templateUrl: './settings.component.html',
+    styleUrl: './settings.component.scss'
 })
 export class SettingsComponent {
   constructor(private router: Router) {}

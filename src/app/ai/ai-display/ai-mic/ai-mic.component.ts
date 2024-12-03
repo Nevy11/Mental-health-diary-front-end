@@ -12,11 +12,10 @@ import { AiService } from '../../ai.service';
 import { AiDisplayService } from '../ai-display.service';
 
 @Component({
-  selector: 'diary-ai-mic',
-  standalone: true,
-  imports: [MatIconModule, MatButtonModule, MatProgressSpinnerModule],
-  templateUrl: './ai-mic.component.html',
-  styleUrl: './ai-mic.component.scss',
+    selector: 'diary-ai-mic',
+    imports: [MatIconModule, MatButtonModule, MatProgressSpinnerModule],
+    templateUrl: './ai-mic.component.html',
+    styleUrl: './ai-mic.component.scss'
 })
 export class AiMicComponent implements OnInit, OnDestroy {
   show_spinner = false;

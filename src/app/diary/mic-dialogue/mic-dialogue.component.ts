@@ -10,11 +10,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
-  selector: 'diary-mic-dialogue',
-  standalone: true,
-  imports: [MatIconModule, MatProgressSpinnerModule],
-  templateUrl: './mic-dialogue.component.html',
-  styleUrls: ['./mic-dialogue.component.scss'],
+    selector: 'diary-mic-dialogue',
+    imports: [MatIconModule, MatProgressSpinnerModule],
+    templateUrl: './mic-dialogue.component.html',
+    styleUrls: ['./mic-dialogue.component.scss']
 })
 export class MicDialogueComponent implements OnInit, OnDestroy {
   show_spinner = false;

@@ -12,17 +12,16 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { CommonModule } from '@angular/common';
 import { DataSettingsService } from './settings/data-settings/data-settings.service';
 @Component({
-  selector: 'diary-root',
-  standalone: true,
-  imports: [
-    RouterOutlet,
-    MatButtonModule,
-    MatSidenavModule,
-    MatSlideToggleModule,
-    CommonModule,
-  ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+    selector: 'diary-root',
+    imports: [
+        RouterOutlet,
+        MatButtonModule,
+        MatSidenavModule,
+        MatSlideToggleModule,
+        CommonModule,
+    ],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss'
 })
 export class AppComponent implements AfterViewInit {
   name = 'MHD';

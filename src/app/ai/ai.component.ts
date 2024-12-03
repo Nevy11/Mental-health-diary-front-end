@@ -11,18 +11,17 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { AiDisplayComponent } from './ai-display/ai-display.component';
 
 @Component({
-  selector: 'diary-ai',
-  standalone: true,
-  imports: [
-    MatIconModule,
-    FormsModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    AiDisplayComponent,
-  ],
-  templateUrl: './ai.component.html',
-  styleUrl: './ai.component.scss',
+    selector: 'diary-ai',
+    imports: [
+        MatIconModule,
+        FormsModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        AiDisplayComponent,
+    ],
+    templateUrl: './ai.component.html',
+    styleUrl: './ai.component.scss'
 })
 export class AIComponent {
   // constructor(

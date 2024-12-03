@@ -23,12 +23,11 @@ import { DayRadioService } from '../day-radio/day-radio.service';
 import { catchError, tap } from 'rxjs';
 
 @Component({
-  selector: 'diary-goal-drag-n-drop',
-  templateUrl: './goal-drag-n-drop.component.html',
-  styleUrl: './goal-drag-n-drop.component.scss',
-  standalone: true,
-  imports: [CdkDrag, CdkDropList, MatButtonModule, CommonModule],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'diary-goal-drag-n-drop',
+    templateUrl: './goal-drag-n-drop.component.html',
+    styleUrl: './goal-drag-n-drop.component.scss',
+    imports: [CdkDrag, CdkDropList, MatButtonModule, CommonModule],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GoalDragNDropComponent implements OnInit {
   constructor(
