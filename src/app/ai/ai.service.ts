@@ -6,6 +6,7 @@ import {
   AIReadOne,
   AiUsernameUpdate,
   AnswerModel,
+  DalotModel,
   QuestionModel,
   ReturnAi,
   ReturnAiReadOne,
@@ -41,7 +42,12 @@ export class AiService {
     return this.http.patch<ReturnAi>(url, data);
   }
   ask_model_question(data: QuestionModel) {
-    let url = 'http://127.0.0.1:8000/api/ask/';
+    // let url = 'http://127.0.0.1:8000/api/ask/';
+    let url = 'http://127.0.0.1:8000/api/dalotgpt/';
+    return this.http.post<AnswerModel>(url, data);
+  }
+  ask_new_model_question(data: DalotModel) {
+    let url = 'http://127.0.0.1:8000/api/dalotgptnew/';
     return this.http.post<AnswerModel>(url, data);
   }
 }

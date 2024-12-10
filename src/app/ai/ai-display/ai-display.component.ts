@@ -20,22 +20,21 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { tap } from 'rxjs';
-import { AiDisplayService } from './ai-display.service';
 
 @Component({
-    selector: 'diary-ai-display',
-    imports: [
-        MatFormFieldModule,
-        MatInputModule,
-        FormsModule,
-        MatCardModule,
-        CommonModule,
-        MatButtonModule,
-        MatIconModule,
-    ],
-    templateUrl: './ai-display.component.html',
-    styleUrls: ['./ai-display.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'diary-ai-display',
+  imports: [
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatCardModule,
+    CommonModule,
+    MatButtonModule,
+    MatIconModule,
+  ],
+  templateUrl: './ai-display.component.html',
+  styleUrls: ['./ai-display.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AiDisplayComponent implements OnInit, AfterViewChecked {
   @ViewChild('chatWindow', { static: false }) chatWindow!: ElementRef;
@@ -54,8 +53,7 @@ export class AiDisplayComponent implements OnInit, AfterViewChecked {
     private loginService: LoginService,
     private matSnackBar: MatSnackBar,
     private cdr: ChangeDetectorRef,
-    private zone: NgZone,
-    private aiDisplayService: AiDisplayService
+    private zone: NgZone
   ) {}
 
   ngOnInit(): void {
@@ -105,17 +103,58 @@ export class AiDisplayComponent implements OnInit, AfterViewChecked {
       ];
       this.cdr.markForCheck(); // Notify Angular of change
 
-      this.aiDisplayService
-        .query({ question: this.newMessage })
-        .subscribe((resp) => {
-          console.log(resp);
-          if (resp.success) {
-            this.aiService
-              .ask_model_question({
-                question: question,
-                context: resp.context,
-              })
-              .subscribe((resp) => {
+      // this.aiDisplayService.query({ question: this.newMessage });
+      // .subscribe((resp) => {
+      // console.log(resp);
+      let new_data = true;
+      if (new_data) {
+        this.aiService
+          .ask_new_model_question({
+            question: question,
+            context: [],
+          })
+          .pipe(
+            tap((resp) => {
+              this.messages = [
+                ...this.messages,
+                { user: this.bot_name, text: resp.answer },
+              ];
+              this.cdr.markForCheck(); // Notify Angular again
+
+              this.aiService
+                .create_ai({
+                  username: this.username,
+                  question: question,
+                  answer: resp.answer,
+                })
+                .subscribe((createResp) => {
+                  console.log(createResp);
+                });
+            })
+          )
+          .subscribe();
+      } else {
+        let my_questions: string[] = [];
+        this.aiService
+          .read_one_ai({ username: this.name_of_user })
+          .pipe(
+            tap((resp) => {
+              resp.data.forEach((data) => {
+                console.log(this.messages);
+                my_questions.push(data.question);
+              });
+            })
+          )
+          .subscribe();
+        let last_answer = my_questions.pop();
+        if (last_answer) {
+          this.aiService
+            .ask_model_question({
+              question: question,
+              context: last_answer,
+            })
+            .pipe(
+              tap((resp) => {
                 this.messages = [
                   ...this.messages,
                   { user: this.bot_name, text: resp.answer },
@@ -131,18 +170,19 @@ export class AiDisplayComponent implements OnInit, AfterViewChecked {
                   .subscribe((createResp) => {
                     console.log(createResp);
                   });
-              });
-          } else {
-            this.matSnackBar.open(`Internet connection Error`, 'Close', {
-              duration: 3000,
-            });
-          }
+              })
+            )
+            .subscribe();
+        } else {
+          console.error('last answer is not available');
+        }
+      }
 
-          // Add bot's response
+      // Add bot's response
 
-          this.scrollToBottom();
-          this.cdr.detectChanges();
-        });
+      this.scrollToBottom();
+      this.cdr.detectChanges();
+      // });
 
       // Clear input
       this.newMessage = '';

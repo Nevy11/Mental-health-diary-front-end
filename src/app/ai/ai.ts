@@ -48,3 +48,8 @@ export interface QuestionModel {
 export interface AnswerModel {
   answer: string;
 }
+
+export interface DalotModel {
+  question: string;
+  context: string[];
+}
