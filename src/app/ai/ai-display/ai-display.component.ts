@@ -19,7 +19,7 @@ import { LoginService } from '../../login/login.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { tap } from 'rxjs';
+import { pipe, tap } from 'rxjs';
 
 @Component({
   selector: 'diary-ai-display',
@@ -103,89 +103,92 @@ export class AiDisplayComponent implements OnInit, AfterViewChecked {
       ];
       this.cdr.markForCheck(); // Notify Angular of change
 
-      // this.aiDisplayService.query({ question: this.newMessage });
-      // .subscribe((resp) => {
-      // console.log(resp);
-      let new_data = true;
-      if (new_data) {
-        this.aiService
-          .ask_new_model_question({
-            question: question,
-            context: [],
-          })
-          .pipe(
-            tap((resp) => {
-              this.messages = [
-                ...this.messages,
-                { user: this.bot_name, text: resp.answer },
-              ];
-              this.cdr.markForCheck(); // Notify Angular again
+      let my_questions: string[] = [];
+      let one_question: string = '';
+      this.aiService
+        .read_one_ai({ username: this.name_of_user })
+        .pipe(
+          tap((resp) => {
+            resp.data.forEach((data) => {
+              console.log(data.question);
+              one_question.concat(data.question);
+              my_questions.push(data.question);
+            });
 
+            console.log('one Question: ', one_question);
+            // wrap it from here
+            console.log(my_questions);
+            let last_answer = my_questions.pop();
+            console.log('last answer: ', last_answer);
+            if (last_answer) {
+              console.log('last answer is true');
               this.aiService
-                .create_ai({
-                  username: this.username,
+                .ask_model_question({
                   question: question,
-                  answer: resp.answer,
+                  context: last_answer,
                 })
-                .subscribe((createResp) => {
-                  console.log(createResp);
-                });
-            })
-          )
-          .subscribe();
-      } else {
-        let my_questions: string[] = [];
-        this.aiService
-          .read_one_ai({ username: this.name_of_user })
-          .pipe(
-            tap((resp) => {
-              resp.data.forEach((data) => {
-                console.log(this.messages);
-                my_questions.push(data.question);
-              });
-            })
-          )
-          .subscribe();
-        let last_answer = my_questions.pop();
-        if (last_answer) {
-          this.aiService
-            .ask_model_question({
-              question: question,
-              context: last_answer,
-            })
-            .pipe(
-              tap((resp) => {
-                this.messages = [
-                  ...this.messages,
-                  { user: this.bot_name, text: resp.answer },
-                ];
-                this.cdr.markForCheck(); // Notify Angular again
+                .pipe(
+                  tap((resp) => {
+                    this.messages = [
+                      ...this.messages,
+                      { user: this.bot_name, text: resp.answer },
+                    ];
+                    this.cdr.markForCheck(); // Notify Angular again
 
-                this.aiService
-                  .create_ai({
-                    username: this.username,
-                    question: question,
-                    answer: resp.answer,
+                    this.aiService
+                      .create_ai({
+                        username: this.username,
+                        question: question,
+                        answer: resp.answer,
+                      })
+                      .subscribe((createResp) => {
+                        console.log(createResp);
+                      });
                   })
-                  .subscribe((createResp) => {
-                    console.log(createResp);
-                  });
-              })
-            )
-            .subscribe();
-        } else {
-          console.error('last answer is not available');
-        }
-      }
+                )
+                .subscribe();
+            } else {
+              console.log('last answer is false');
+              this.aiService
+                .ask_new_model_question({
+                  question: question,
+                  context: [],
+                })
+                .pipe(
+                  tap((resp) => {
+                    this.messages = [
+                      ...this.messages,
+                      { user: this.bot_name, text: resp.answer },
+                    ];
+                    this.cdr.markForCheck(); // Notify Angular again
 
-      // Add bot's response
+                    this.aiService
+                      .create_ai({
+                        username: this.username,
+                        question: question,
+                        answer: resp.answer,
+                      })
+                      .subscribe((createResp) => {
+                        console.log(createResp);
+                      });
+                  })
+                )
+                .subscribe();
+            }
 
-      this.scrollToBottom();
-      this.cdr.detectChanges();
-      // });
+            // Add bot's response
 
-      // Clear input
-      this.newMessage = '';
+            this.scrollToBottom();
+            this.cdr.detectChanges();
+            // });
+
+            // Clear input
+            this.newMessage = '';
+
+            // to here
+          })
+        )
+        .subscribe();
     } else {
       this.matSnackBar.open('Invalid entry', 'Close', { duration: 3000 });
     }
