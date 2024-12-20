@@ -25,6 +25,7 @@ export class AiMicComponent implements OnInit, OnDestroy {
   subscriptions: Subscription = new Subscription();
   question!: string;
   answer!: string;
+  my_message = '';
   constructor(
     private snackBar: MatSnackBar,
     private aiMicService: AiMicService,
@@ -33,7 +34,8 @@ export class AiMicComponent implements OnInit, OnDestroy {
     private router: Router,
     private cdRef: ChangeDetectorRef,
     private aiService: AiService,
-    private aiDisplayService: AiDisplayService
+    private aiDisplayService: AiDisplayService,
+    private cdr: ChangeDetectorRef
   ) {}
   async ngOnInit(): Promise<void> {
     try {
@@ -71,48 +73,94 @@ export class AiMicComponent implements OnInit, OnDestroy {
           .pipe(
             tap((resp) => {
               console.log(resp);
-              if (resp) {
-                this.question = resp.message;
-                this.aiDisplayService
-                  .query({ question: this.question })
-                  .subscribe((resp) => {
-                    this.aiService
-                      .ask_model_question({
-                        question: this.question,
-                        context: resp.context,
-                      })
-                      .pipe(
-                        tap((resp) => {
-                          console.log(resp);
-                          this.answer = resp.answer;
-                          this.aiService
-                            .read_one_ai({
-                              username: this.loginService.get_name_of_user,
-                            })
-                            .pipe(
-                              tap((resp) => {
-                                console.log(resp);
-                                if (resp.data.length > 0) {
-                                  // update the ai data service
-                                  this.aiService
-                                    .create_ai({
-                                      username:
-                                        this.loginService.get_name_of_user,
-                                      question: this.question,
-                                      answer: this.answer,
-                                    })
-                                    .subscribe((resp) => {
-                                      console.log(resp);
-                                    });
-                                }
-                              })
-                            )
-                            .subscribe();
+
+              if (resp.success) {
+                this.my_message = resp.message;
+                this.aiService
+                  .ask_new_model_question({
+                    question: resp.message,
+                    context: [],
+                  })
+                  .pipe(
+                    tap((resp) => {
+                      console.log(resp);
+                      // this.messages = [
+                      //   ...this.messages,
+                      //   { user: this.bot_name, text: resp.answer },
+                      // ];
+                      console.log('\nResponse: ', resp.answer);
+                      this.cdr.markForCheck(); // Notify Angular again
+
+                      this.aiService
+                        .create_ai({
+                          username: this.loginService.get_name_of_user,
+                          question: this.my_message,
+                          answer: resp.answer,
                         })
-                      )
-                      .subscribe();
-                  });
+                        .subscribe((createResp) => {
+                          console.log(createResp);
+                        });
+                    })
+                  )
+                  .subscribe();
+              } else {
+                this.snackBar.open(
+                  'Failed to convert the audio to speech',
+                  'Close',
+                  { duration: 3000 }
+                );
               }
+
+              // if (resp) {
+              //   this.question = resp.message;
+              //   this.aiDisplayService
+              //     .query({ question: this.question })
+              //     .subscribe((resp) => {
+              //       this.aiService
+              //         .ask_model_question({
+              //           question: this.question,
+              //           context: [resp.context],
+              //         })
+              //         .pipe(
+              //           tap((resp) => {
+              //             console.log(resp);
+              //             this.answer = resp.answer;
+              //             this.aiService
+              //               .read_one_ai({
+              //                 username: this.loginService.get_name_of_user,
+              //               })
+              //               .pipe(
+              //                 tap((resp) => {
+              //                   console.log(resp);
+              //                   if (resp.data.length > 0) {
+              //                     // update the ai data service
+              //                     this.aiService
+              //                       .create_ai({
+              //                         username:
+              //                           this.loginService.get_name_of_user,
+              //                         question: this.question,
+              //                         answer: this.answer,
+              //                       })
+              //                       .subscribe((resp) => {
+              //                         console.log(resp);
+              //                         if (resp.success) {
+              //                         } else {
+              //                           this.snackBar.open(
+              //                             'Failed to convert the audio to speech',
+              //                             'Close',
+              //                             { duration: 3000 }
+              //                           );
+              //                         }
+              //                       });
+              //                   }
+              //                 })
+              //               )
+              //               .subscribe();
+              //           })
+              //         )
+              //         .subscribe();
+              //     });
+              // }
             }),
             finalize(() => {
               console.log('Finalizing audio conversion');

@@ -7,6 +7,9 @@ import {
   AiUsernameUpdate,
   AnswerModel,
   DalotModel,
+  FlanT5ModelParams,
+  FlanT5ModelReturn,
+  MistralModelParams,
   QuestionModel,
   ReturnAi,
   ReturnAiReadOne,
@@ -49,5 +52,17 @@ export class AiService {
   ask_new_model_question(data: DalotModel) {
     let url = 'http://127.0.0.1:8000/api/dalotgptnew/';
     return this.http.post<AnswerModel>(url, data);
+  }
+  ask_flan_t5_model(data: FlanT5ModelParams) {
+    let url = 'http://127.0.0.1:8000/api/flanT5Base/';
+    return this.http.post<FlanT5ModelReturn>(url, data);
+  }
+  ask_mixtral_model(data: FlanT5ModelParams) {
+    let url = 'http://127.0.0.1:8000/api/FirstMixtralModel/';
+    return this.http.post<FlanT5ModelReturn>(url, data);
+  }
+  ask_mistral_model_others(data: MistralModelParams) {
+    let url = 'http://127.0.0.1:8000/api/OtherMixtralModel/';
+    return this.http.post<FlanT5ModelReturn>(url, data);
   }
 }

@@ -43,13 +43,28 @@ export interface ReturnAi {
 
 export interface QuestionModel {
   question: string;
-  context: string;
+  context: string[];
 }
 export interface AnswerModel {
   answer: string;
+  chat_history_ids: number[];
 }
 
 export interface DalotModel {
   question: string;
   context: string[];
+}
+
+export interface FlanT5ModelParams {
+  question: string;
+}
+
+export interface FlanT5ModelReturn {
+  question: string;
+  answer: string;
+}
+
+export interface MistralModelParams {
+  question: string;
+  messages: any[];
 }
