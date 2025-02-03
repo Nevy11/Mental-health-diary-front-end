@@ -26,6 +26,9 @@
         </mat-form-field>
 
         <div class="bottom-button">
+          <button mat-stroked-button type="button" (click)="signUp()">
+            sign up
+          </button>
           <button
             mat-raised-button
             color="primary"
@@ -33,9 +36,6 @@
             [disabled]="!loginForm.valid"
           >
             login
-          </button>
-          <button mat-stroked-button type="button" (click)="signUp()">
-            sign up
           </button>
         </div>
       </form>
