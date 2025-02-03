@@ -3,7 +3,13 @@
     @for (card of cards | async; track card) {
     <div>
       <mat-grid-tile [colspan]="card.cols" [rowspan]="card.rows">
-        <mat-card class="dashboard-card">
+        <mat-card
+          class="dashboard-card"
+          style="
+            background-image: url({{ card.img_src }});
+            background-size: cover;
+            background-position: center;"
+        >
           <mat-card-header>
             <mat-card-title>
               {{ card.title }}
@@ -32,15 +38,15 @@
               {{ card.title }}
             </button>
             } @if (!card.mobile) {
-            <div class="card-content">
+            <!-- <div class="card-content">
               {{ card.card_content }}
-            </div>
-            <div class="diary-content" routerLink="diary">{{ card.diary }}</div>
-            <div>
+            </div> -->
+            <!-- <div class="diary-content" routerLink="diary">{{ card.diary }}</div> -->
+            <!-- <div>
               {{ card.track_goal }}
-            </div>
-            <div>{{ card.additional_track_goal }}</div>
-            <div>{{ card.settings }}</div>
+            </div> -->
+            <!-- <div>{{ card.additional_track_goal }}</div> -->
+            <!-- <div>{{ card.settings }}</div> -->
             <div class="cover-button">
               <button
                 (click)="route_function(card.title)"

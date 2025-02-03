@@ -19,22 +19,22 @@ import { DayRadioService } from '../goal/day-radio/day-radio.service';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
-    selector: 'diary-dashboard',
-    templateUrl: './dashboard.component.html',
-    styleUrl: './dashboard.component.scss',
-    imports: [
-        AsyncPipe,
-        MatGridListModule,
-        MatMenuModule,
-        MatIconModule,
-        MatButtonModule,
-        MatCardModule,
-        MatSlideToggleModule,
-        MatSidenavModule,
-        RouterModule,
-        MatTooltipModule,
-    ],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'diary-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrl: './dashboard.component.scss',
+  imports: [
+    AsyncPipe,
+    MatGridListModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+    MatSlideToggleModule,
+    MatSidenavModule,
+    RouterModule,
+    MatTooltipModule,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent implements OnInit {
   private breakpointObserver = inject(BreakpointObserver);
@@ -52,6 +52,8 @@ export class DashboardComponent implements OnInit {
             card_content: 'Speak or write to mental gpt.',
             button_name: 'to_mental_ai',
             tooltip: 'One on One with your therapist',
+            color: 'black',
+            img_src: '/images/mental_health.jpeg',
           },
           {
             title: 'Diary',
@@ -60,6 +62,8 @@ export class DashboardComponent implements OnInit {
             mobile: true,
             diary: 'Note all your feelings, emotions, and behaviour',
             tooltip: 'Enter everything you are feeling',
+            color: 'black',
+            img_src: '/images/diary.jpeg',
           },
           {
             title: 'Goals',
@@ -70,6 +74,8 @@ export class DashboardComponent implements OnInit {
               'Enter you goals, try improving yourself, both mentally and physically. ',
             additional_track_goal: 'Update your goals',
             tooltip: 'Track your goals',
+            color: 'black',
+            img_src: '/images/goals.jpeg',
           },
           {
             title: 'Settings',
@@ -78,6 +84,8 @@ export class DashboardComponent implements OnInit {
             mobile: true,
             settings: 'Update your username, email and password',
             tooltip: 'View and update your settings',
+            color: 'white',
+            img_src: '/images/Settings.jpeg',
           },
         ];
       }
@@ -92,6 +100,8 @@ export class DashboardComponent implements OnInit {
             "Talk to me about all of what you are feeling right now and i'll help you. \n Save the cost that you are planning to hire a therapist. \n\n ",
           button_name: 'to_mental_ai',
           tooltip: 'Speak to me Your therapist',
+          color: 'black',
+          img_src: '/images/therapist_image.jpeg',
         },
         {
           title: 'Diary',
@@ -101,6 +111,8 @@ export class DashboardComponent implements OnInit {
           tooltip: 'Enter what your are feeling',
           diary:
             "Write all of what you are feeling right now to rembember your past. \n Wait, You don't need to type to write all of what you are feeling, we'll do that for you. Just speak as if you are speaking to a real therapist.",
+          color: 'black',
+          img_src: '/images/diary.jpeg',
         },
         {
           title: 'Track Goal',
@@ -112,6 +124,8 @@ export class DashboardComponent implements OnInit {
             'Enter you goals, try improving yourself, both mentally and physically. Set your goals, for example, If you have social anxiety, talk to 5 people this week, and in the goal area, if you achieve, carry your goal from todo section to done; then save your update. This enables and helps you to improve your self every day. Do not forget to become the best version of yourself!',
           additional_track_goal:
             "This is how it works, choose a particular day of your week to keep on updating your goals. Once it is done, Yo'll be given  two containers, one is labeled `todo` while the other is labeled `done`. Add your goals, then enter to place it in the to do list. When you finish, drag your achieved from the `todo` to `done`",
+          color: 'black',
+          img_src: '/images/goals.jpeg',
         },
         {
           title: 'Settings',
@@ -121,6 +135,8 @@ export class DashboardComponent implements OnInit {
           tooltip: 'Update your settings',
           settings:
             'view your user settings, update your username, email and password.',
+          color: 'white',
+          img_src: '/images/Settings.jpeg',
         },
       ];
     })

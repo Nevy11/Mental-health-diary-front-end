@@ -23,4 +23,7 @@ import { AiDisplayComponent } from './ai-display/ai-display.component';
   templateUrl: './ai.component.html',
   styleUrl: './ai.component.scss',
 })
-export class AIComponent {}
+export class AIComponent {
+  width = 100;
+  height = 100;
+}

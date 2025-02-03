@@ -237,141 +237,6 @@ export class AiDisplayComponent implements OnInit, AfterViewChecked {
                 })
               )
               .subscribe();
-            // let show_form = false;
-            // if (show_form) {
-            //   this.aiService
-            //     .ask_mixtral_model({ question: question })
-            //     .pipe(
-            //       tap((resp) => {
-            //         console.log('Response: ', resp);
-            //         this.messages = [
-            //           ...this.messages,
-            //           { user: this.bot_name, text: resp.answer },
-            //         ];
-            //         this.cdr.markForCheck();
-            //         this.aiService
-            //           .create_ai({
-            //             username: this.username,
-            //             question: resp.question,
-            //             answer: resp.answer,
-            //           })
-            //           .subscribe((createResp) => {
-            //             console.log(createResp);
-            //           });
-            //       })
-            //     )
-            //     .subscribe();
-            // } else {
-            //   this.aiService
-            //     .ask_mistral_model_others({
-            //       question: question,
-            //       messages: [
-            //         {
-            //           role: 'user',
-            //           content: 'Hello',
-            //         },
-            //         {
-            //           role: 'assistant',
-            //           content:
-            //             "Hello! How can I help you today? If you have any questions about a specific topic, feel free to ask. I'll do my best to provide a clear and concise answer. If you want to learn about a topic, you can also ask me to explain it. I can explain concepts in a way that is easy to understand, even if you don't have prior knowledge of the subject. I'm here to help you learn and understand.",
-            //         },
-            //         {
-            //           role: 'user',
-            //           content: 'How can i cook pancakes?',
-            //         },
-            //         {
-            //           role: 'assistant',
-            //           content:
-            //             "Sure, I'd be happy to help you make pancakes! Here is a simple recipe that you can follow:\n\nIngredients:\n\n* 1 cup all-purpose flour\n* 2 tablespoons white sugar\n* 1 teaspoon baking powder\n* 1/2 teaspoon baking soda\n* 1/4 teaspoon salt\n* 3/4 cup buttermilk\n* 1/2 cup milk\n* 1 egg\n* 2 tablespoons butter, melted\n* Vegetable oil or cooking spray, for frying\n\nInstructions:\n\n1. In a large bowl, whisk together the flour, sugar, baking powder, baking soda, and salt.\n2. In a separate bowl, whisk together the buttermilk, milk, egg, and melted butter.\n3. Add the wet ingredients to the dry ingredients and stir until just combined. It's okay if there are a few lumps in the batter.\n4. Preheat a large skillet or griddle over medium heat. Lightly coat the surface with vegetable oil or cooking spray.\n5. For each pancake, pour about 1/4 cup of batter onto the skillet. Cook until bubbles form on the surface of the pancake and the edges look set, about 2-3 minutes.\n6. Flip the pancake and cook until the other side is golden brown, about 2 minutes.\n7. Serve the pancakes warm, with your favorite toppings, such as maple syrup, fresh fruit, or whipped cream.\n\nI hope this helps! Let me know if you have any questions or if you'd like me to explain any of the steps in more detail. I'm here to help!",
-            //         },
-            //       ],
-            //     })
-            //     .pipe(
-            //       tap((resp) => {
-            //         console.log('Response: ', resp);
-            //         this.messages = [
-            //           ...this.messages,
-            //           { user: this.bot_name, text: resp.answer },
-            //         ];
-            //         this.cdr.markForCheck();
-            //         this.aiService
-            //           .create_ai({
-            //             username: this.username,
-            //             question: resp.question,
-            //             answer: resp.answer,
-            //           })
-            //           .subscribe((createResp) => {
-            //             console.log(createResp);
-            //           });
-            //       })
-            //     )
-            //     .subscribe();
-            // }
-
-            /*
-            if (last_answer) {
-              // console.log('last answer is true');
-              this.aiService
-                .ask_model_question({
-                  question: question,
-                  // context: last_answer,
-                  context: my_questions,
-                })
-                .pipe(
-                  tap((resp) => {
-                    this.messages = [
-                      ...this.messages,
-                      { user: this.bot_name, text: resp.answer },
-                    ];
-                    this.cdr.markForCheck(); // Notify Angular again
-
-                    this.aiService
-                      .create_ai({
-                        username: this.username,
-                        question: question,
-                        answer: resp.answer,
-                      })
-                      .subscribe((createResp) => {
-                        console.log(createResp);
-                      });
-                  })
-                )
-                .subscribe();
-            } else {
-              // cdashboardonsole.log('last answer is false');
-              this.aiService
-                .ask_new_model_question({
-                  question: question,
-                  context: [],
-                })
-                .pipe(
-                  tap((resp) => {
-                    console.log(resp);
-                    this.messages = [
-                      ...this.messages,
-                      { user: this.bot_name, text: resp.answer },
-                    ];
-                    this.cdr.markForCheck(); // Notify Angular again
-
-                    this.aiService
-                      .create_ai({
-                        username: this.username,
-                        question: question,
-                        answer: resp.answer,
-                      })
-                      .subscribe((createResp) => {
-                        console.log(createResp);
-                      });
-                  })
-                )
-                .subscribe();
-            }
-*/
-            // Add bot's response
-
-            // this.scrollToBottom();
-            // this.cdr.detectChanges();
-            // });
 
             // Clear input
             this.newMessage = '';
@@ -405,7 +270,9 @@ export class AiDisplayComponent implements OnInit, AfterViewChecked {
     this.cdr.markForCheck(); // Notify Angular of change
     this.cdr.detectChanges();
     this.router.navigate(['dashboard']);
-    this.matSnackBar.open(`I have no memory of you :)`);
+    this.matSnackBar.open(`I have no memory of you :)`, `Close`, {
+      duration: 3000,
+    });
   }
 
   startRecording() {
