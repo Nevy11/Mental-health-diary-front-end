@@ -1,17 +1,21 @@
-<label id="example-radio-group-label">Pick your plan day</label>
+<label id="example-radio-group-label"
+  ><span style="color: black">Pick your plan day</span></label
+>
 <mat-radio-group
   aria-labelledby="example-radio-group-label"
-  class="example-radio-group"
   [(ngModel)]="favourite_day"
 >
   @for (season of seasons; track season) {
-  <mat-radio-button class="example-radio-button" [value]="season">{{
-    season
-  }}</mat-radio-button>
+  <mat-radio-button
+    class="example-radio-button"
+    [value]="season"
+    class="example-radio-group"
+    ><span style="color: black">{{ season }}</span></mat-radio-button
+  >
   }
 </mat-radio-group>
 <div class="bottom">
-  <div>Your plan day is: {{ favourite_day }}</div>
+  <div style="color: black">Your plan day is: {{ favourite_day }}</div>
   <div>
     <button mat-flat-button color="primary" (click)="select_day()">set</button>
   </div>

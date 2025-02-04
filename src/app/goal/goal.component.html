@@ -1,23 +1,25 @@
-<div class="go-back">
-  <mat-icon (click)="to_dashboard()">arrow_back</mat-icon>
-</div>
-
-<div class="day-radio">
-  <diary-day-radio></diary-day-radio>
-</div>
-
-@if (my_day == stored_fav_day) {
-
-<div @bounce>
-  <div class="my-ease">
-    <diary-add-goal-form></diary-add-goal-form>
+<div class="overall_goal">
+  <div class="go-back">
+    <mat-icon (click)="to_dashboard()">arrow_back</mat-icon>
   </div>
-</div>
-} @else {
 
-<div @bounce>
-  <div class="drag-drop my-ease">
-    <diary-goal-drag-n-drop></diary-goal-drag-n-drop>
+  <div class="day-radio">
+    <diary-day-radio></diary-day-radio>
   </div>
+
+  @if (my_day == stored_fav_day) {
+
+  <div @bounce>
+    <div class="my-ease">
+      <diary-add-goal-form></diary-add-goal-form>
+    </div>
+  </div>
+  } @else {
+
+  <div @bounce>
+    <div class="drag-drop my-ease">
+      <diary-goal-drag-n-drop></diary-goal-drag-n-drop>
+    </div>
+  </div>
+  }
 </div>
-}

@@ -2,7 +2,9 @@
   <mat-list>
     @for (item of todo_stored; track $index) {
 
-    <mat-list-item>{{ item }}</mat-list-item>
+    <mat-list-item
+      ><span style="color: black">{{ item }}</span></mat-list-item
+    >
     <mat-divider></mat-divider>
     }
   </mat-list>

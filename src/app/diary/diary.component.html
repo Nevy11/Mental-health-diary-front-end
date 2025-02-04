@@ -13,7 +13,7 @@
 
       <div>
         <textarea
-          style="height: 90vh"
+          style="height: 70vh; margin-bottom: 1rem"
           matInput
           #message
           [(ngModel)]="diaryEntry"
@@ -27,7 +27,9 @@
     </mat-form-field>
   </form>
   <div class="bottom-button">
-    <mat-icon (click)="back_to_dashboard()">arrow_back</mat-icon>
+    <mat-icon style="margin-top: 0.5rem" (click)="back_to_dashboard()"
+      >arrow_back</mat-icon
+    >
     <button (click)="clear_Diary()" mat-flat-button>clear</button>
   </div>
 </div>

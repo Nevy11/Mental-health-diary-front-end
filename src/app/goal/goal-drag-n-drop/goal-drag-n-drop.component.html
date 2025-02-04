@@ -5,7 +5,7 @@
 </div>
 <div *ngIf="show_todo == true">
   <div class="container mat-typography">
-    <h2 class="h2">To do</h2>
+    <h2 class="h2" style="color: black">To do</h2>
 
     <div
       cdkDropList
@@ -16,13 +16,15 @@
       (cdkDropListDropped)="drop($event)"
     >
       @for (item of todo; track item) {
-      <div class="list-item" cdkDrag>{{ item }}</div>
+      <div class="list-item" cdkDrag>
+        <span style="color: black">{{ item }}</span>
+      </div>
       }
     </div>
   </div>
 
   <div class="container mat-typography">
-    <h2 class="h2">Done</h2>
+    <h2 class="h2" style="color: black">Done</h2>
 
     <div
       cdkDropList
@@ -33,7 +35,9 @@
       (cdkDropListDropped)="drop($event)"
     >
       @for (item of done; track item) {
-      <div class="list-item" cdkDrag>{{ item }}</div>
+      <div class="list-item" cdkDrag>
+        <span style="color: black">{{ item }}</span>
+      </div>
       }
     </div>
     <div class="bottom-button">

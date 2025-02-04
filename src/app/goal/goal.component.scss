@@ -45,3 +45,12 @@
 .my-ease {
   margin-top: 5rem;
 }
+
+html,
+body {
+  height: 100%;
+}
+.overall_goal {
+  height: 90vh;
+  background-image: url(/images/Goal_pattern.jpeg);
+}
