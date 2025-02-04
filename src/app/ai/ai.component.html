@@ -1,31 +1,25 @@
 <div class="aiField">
-  <div class="title mat-display-small">
-    <img
-      ngSrc="/images/therapist.jpeg"
+  <div class="title mat-sys-headline-small">
+    <!-- <img
+      ngSrc="/images/therapist_image.jpeg"
       alt="Image Unavailable"
       [width]="width"
       [height]="height"
       priority
-    />
+    /> -->
+    <div
+      style="
+        margin-top: 10px;
+        margin-bottom: 100px;
+        font-size: xx-large;
+        font-family: 'Times New Roman', Times, serif;
+        font-style: italic;
+      "
+    >
+      Therapist
+    </div>
   </div>
   <div>
     <diary-ai-display></diary-ai-display>
   </div>
-  <!-- <div class="ai-container">
-    <div>
-      <mat-icon (click)="startRecording()" class="mic">mic</mat-icon>
-    </div>
-    <textarea
-      [(ngModel)]="userInput"
-      class="ai-entry"
-      placeholder="Am here for you"
-    ></textarea>
-    <div class="button-container">
-      <button mat-stroked-button (click)="clear()">clear</button>
-      <button mat-stroked-button (click)="sendMessage()">Send</button>
-    </div>
-  </div>
-  <div>
-    <mat-icon (click)="toDashboard()">arrow_back</mat-icon>
-  </div> -->
 </div>

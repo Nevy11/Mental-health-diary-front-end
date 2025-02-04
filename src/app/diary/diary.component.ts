@@ -25,29 +25,28 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { DayRadioService } from '../goal/day-radio/day-radio.service';
 import { Router } from '@angular/router';
 import { Dialog, DialogModule } from '@angular/cdk/dialog';
-import { MicDialogueComponent } from './mic-dialogue/mic-dialogue.component';
 import { tap } from 'rxjs';
 
 @Component({
-    selector: 'diary-diary',
-    imports: [
-        MatHint,
-        MatLabel,
-        MatFormField,
-        MatMenuModule,
-        MatInputModule,
-        PickerModule,
-        FormsModule,
-        MatFormFieldModule,
-        CommonModule,
-        MatButtonModule,
-        MatDialogModule,
-        MatIcon,
-        DialogModule,
-    ],
-    templateUrl: './diary.component.html',
-    styleUrl: './diary.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'diary-diary',
+  imports: [
+    MatHint,
+    MatLabel,
+    MatFormField,
+    MatMenuModule,
+    MatInputModule,
+    PickerModule,
+    FormsModule,
+    MatFormFieldModule,
+    CommonModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatIcon,
+    DialogModule,
+  ],
+  templateUrl: './diary.component.html',
+  styleUrl: './diary.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DiaryComponent implements OnInit {
   diaryEntry: string = '';

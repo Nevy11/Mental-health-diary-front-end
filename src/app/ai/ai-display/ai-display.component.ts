@@ -132,74 +132,12 @@ export class AiDisplayComponent implements OnInit, AfterViewChecked {
             // wrap it from here
             // console.log(my_questions);
             let last_answer = my_questions.pop();
-            // console.log('last answer: ', last_answer);
 
-            // i'll go with the option of asking the model new question without keeping track of the history
-            // for now
-            // this.aiService
-            //   .ask_new_model_question({
-            //     question: question,
-            //     context: [],
-            //   })
-            //   .pipe(
-            //     tap((resp) => {
-            //       console.log(resp);
-            //       this.messages = [
-            //         ...this.messages,
-            //         { user: this.bot_name, text: resp.answer },
-            //       ];
-            //       this.cdr.markForCheck(); // Notify Angular again
-
-            //       this.aiService
-            //         .create_ai({
-            //           username: this.username,
-            //           question: question,
-            //           answer: resp.answer,
-            //         })
-            //         .subscribe((createResp) => {
-            //           console.log(createResp);
-            //         });
-            //     })
-            //   )
-            //   .subscribe();
-
-            // this.aiService
-            //   .ask_flan_t5_model({ question: question })
-            //   .pipe(
-            //     tap((resp) => {
-            //       console.log('Response: ', resp);
-            //       this.messages = [
-            //         ...this.messages,
-            //         { user: this.bot_name, text: resp.answer },
-            //       ];
-            //       this.cdr.markForCheck();
-            //       this.aiService
-            //         .create_ai({
-            //           username: this.username,
-            //           question: resp.question,
-            //           answer: resp.answer,
-            //         })
-            //         .subscribe((createResp) => {
-            //           console.log(createResp);
-            //         });
-            //     })
-            //   )
-            //   .subscribe();
             this.aiService
               .read_one_ai({ username: this.loginService.get_name_of_user })
               .pipe(
                 tap((resp) => {
-                  let my_messages: { role: string; content: string }[] = [
-                    // {
-                    //   role: 'user',
-                    //   content: 'What is your favourite condiment?',
-                    // },
-                    // {
-                    //   role: 'assistant',
-                    //   content:
-                    //     "Well, I'm quite partial to a good squeeze of fresh lemon juice. It adds just the right amount of zesty flavour to whatever I'm cooking up in the kitchen!",
-                    // },
-                  ];
+                  let my_messages: { role: string; content: string }[] = [];
                   console.log(resp);
                   resp.data.forEach((data_loops) => {
                     let user_role = 'user';
