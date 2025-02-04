@@ -1,0 +1,38 @@
+<div class="overall_settings">
+  <section>
+    <h4 class="title">Settings</h4>
+    <mat-button-toggle-group
+      [formControl]="fontStyleControl"
+      aria-label="Font Style"
+    >
+      <mat-button-toggle value="Username">
+        <img
+          ngSrc="/images/username.jpeg"
+          alt="Image unavailable"
+          [width]="width"
+          [height]="height"
+          priority
+        />
+      </mat-button-toggle>
+      <mat-button-toggle value="Email">
+        <img
+          ngSrc="/images/email.jpeg"
+          alt="Image unavailable"
+          [width]="width"
+          [height]="height"
+        />
+      </mat-button-toggle>
+      <mat-button-toggle value="Password">
+        <img
+          ngSrc="/images/password_1.jpeg"
+          alt="Image unavailable"
+          [width]="width"
+          [height]="height"
+        />
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+    <br />
+    <!-- <p style="margin-top: 5rem">Chosen value is {{ fontStyleControl.value }}</p> -->
+  </section>
+  <br />
+</div>

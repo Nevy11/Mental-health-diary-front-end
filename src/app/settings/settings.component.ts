@@ -1,27 +1,34 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { SettingformComponent } from './settingform/settingform.component';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  inject,
+  ViewContainerRef,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
-import { DataSettingsComponent } from './data-settings/data-settings.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgOptimizedImage } from '@angular/common';
-import { UsernameSetComponent } from './username-set/username-set.component';
-import { EmailSetComponent } from './email-set/email-set.component';
-import { PasswordSetComponent } from './password-set/password-set.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AsyncPipe } from '@angular/common';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { map } from 'rxjs';
+import { MediumSettingsComponent } from './medium-settings/medium-settings.component';
+import { HandsetSettingsComponent } from './handset-settings/handset-settings.component';
+import { LargeSettingsComponent } from './large-settings/large-settings.component';
+import { LargeBraveSettingsComponent } from './large-brave-settings/large-brave-settings.component';
+
 @Component({
   selector: 'diary-settings',
   imports: [
-    SettingformComponent,
     MatButtonModule,
-    DataSettingsComponent,
     MatButtonToggleModule,
     FormsModule,
     ReactiveFormsModule,
-    NgOptimizedImage,
-    UsernameSetComponent,
-    EmailSetComponent,
-    PasswordSetComponent,
+    AsyncPipe,
+    MediumSettingsComponent,
+    HandsetSettingsComponent,
+    LargeSettingsComponent,
+    LargeBraveSettingsComponent,
   ],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.scss',
@@ -32,13 +39,42 @@ export class SettingsComponent {
   logout() {
     this.router.navigate(['login']);
   }
-  show_form: boolean = false;
-  update_settings() {
-    this.show_form = !this.show_form;
-  }
-  fontStyleControl = new FormControl('');
-  fontStyle?: string;
+  vcr = inject(ViewContainerRef);
+  breakpointObserver = inject(BreakpointObserver);
 
-  width = 300;
-  height = 300;
+  isHandset$ = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
+    map((result) => {
+      if (result.matches) {
+        return true;
+      }
+      return false;
+    })
+  );
+  isMedium$ = this.breakpointObserver.observe(Breakpoints.Tablet).pipe(
+    map((x) => {
+      if (x.matches) {
+        return true;
+      }
+
+      return false;
+    })
+  );
+
+  isLarge$ = this.breakpointObserver.observe(Breakpoints.XLarge).pipe(
+    map((x) => {
+      if (x.matches) {
+        return true;
+      }
+      return false;
+    })
+  );
+  isLargeBrave$ = this.breakpointObserver.observe(Breakpoints.Large).pipe(
+    map((x) => {
+      if (x.matches) {
+        return true;
+      } else {
+        return false;
+      }
+    })
+  );
 }
