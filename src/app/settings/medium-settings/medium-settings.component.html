@@ -38,7 +38,8 @@
 </div>
 <div class="div_selection">
   @if (fontStyleControl.value === "Username") {
-  <div><diary-username-set></diary-username-set></div>
+  {{ openDialog() }}
+
   } @else if (fontStyleControl.value == "Password") {
   <div><diary-password-set></diary-password-set></div>
   }@else {

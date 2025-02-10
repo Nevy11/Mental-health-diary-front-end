@@ -1,8 +1,11 @@
 @if (isHandset$ | async) {
+<div>Handset</div>
 <diary-handset-settings></diary-handset-settings>
 }@else if (isMedium$) {
+<div>medium</div>
 <diary-medium-settings></diary-medium-settings>
 }@else if (isLarge$) {
+<div>large</div>
 <diary-large-settings></diary-large-settings>
 } @else {
 <diary-large-brave-settings></diary-large-brave-settings>
