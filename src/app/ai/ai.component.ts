@@ -5,7 +5,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { AiDisplayComponent } from './ai-display/ai-display.component';
-import { NgOptimizedImage } from '@angular/common';
 @Component({
   selector: 'diary-ai',
   imports: [
@@ -15,7 +14,6 @@ import { NgOptimizedImage } from '@angular/common';
     MatFormFieldModule,
     MatButtonModule,
     AiDisplayComponent,
-    NgOptimizedImage,
   ],
   templateUrl: './ai.component.html',
   styleUrl: './ai.component.scss',

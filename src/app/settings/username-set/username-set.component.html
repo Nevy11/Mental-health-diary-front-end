@@ -9,7 +9,7 @@
         <mat-label>Enter Your new username</mat-label>
         <input
           matInput
-          placeholder="pat@example.com"
+          placeholder="@nevy11"
           [formControl]="new_username"
           (blur)="updateErrorMessage()"
           required
@@ -20,7 +20,9 @@
       </mat-form-field>
     </div>
     <div>
-      <button mat-stroked-button class="submit_btn">submit</button>
+      <button mat-stroked-button class="submit_btn" (click)="update_username()">
+        submit
+      </button>
     </div>
   </div>
 </div>

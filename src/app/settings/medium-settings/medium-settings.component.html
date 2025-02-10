@@ -43,6 +43,6 @@
   } @else if (fontStyleControl.value == "Password") {
   <div><diary-password-set></diary-password-set></div>
   }@else {
-  <div><diary-email-set></diary-email-set></div>
+  {{ openDialogEmail() }}
   }
 </div>
