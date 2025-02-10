@@ -1,5 +1,26 @@
-<div class="main_username">
-  <p class="current_username">Username: {{ username }}</p>
-
-  <button class="change_button" mat-stroked-button>Change</button>
+<div>
+  <div class="main_username">
+    <p class="current_username">Username: {{ username }}</p>
+    <button mat-stroked-button>Change</button>
+  </div>
+  <div class="main_username">
+    <div class="example-container bottom">
+      <mat-form-field>
+        <mat-label>Enter Your new username</mat-label>
+        <input
+          matInput
+          placeholder="pat@example.com"
+          [formControl]="new_username"
+          (blur)="updateErrorMessage()"
+          required
+        />
+        @if (new_username.invalid) {
+        <mat-error>{{ error_message() }}</mat-error>
+        }
+      </mat-form-field>
+    </div>
+    <div>
+      <button mat-stroked-button class="submit_btn">submit</button>
+    </div>
+  </div>
 </div>

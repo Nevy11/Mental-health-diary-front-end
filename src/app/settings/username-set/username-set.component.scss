@@ -10,3 +10,16 @@
 .current_username {
   margin-right: 5rem;
 }
+.example-container mat-form-field + mat-form-field {
+  margin-left: 8px;
+}
+
+.bottom {
+  margin-right: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.submit_btn {
+  margin-top: 1.5rem;
+}
