@@ -38,7 +38,7 @@ export class MediumSettingsComponent implements OnInit {
     this.dialog.open<string>(UsernameDialogComponent);
   }
   openDialogEmail(): void {
-    this.dialog.open<string>(EmailDialogComponent);
+    this.dialog.open<string>(UsernameDialogComponent);
   }
 
   ngOnInit(): void {
