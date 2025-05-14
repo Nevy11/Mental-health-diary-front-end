@@ -25,3 +25,10 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+
+## How to use it
+1. Clone the repository `git clone git@github.com:Nevy11/Mental-health-diary-front-end.git`
+2. Enter the repository using terminal: `cd Mental-health-diary-front-end/`
+3. Install the dependancies `npm install`
+4. Serve the project `ng serve -o`
