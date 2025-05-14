@@ -28,10 +28,20 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 ## How to use it
-{Make sure you have angular installed in your machine}
-1. Clone the repository `git clone git@github.com:Nevy11/Mental-health-diary-front-end.git`
-2. Enter the repository using terminal: `cd Mental-health-diary-front-end/`
-3. Install the dependancies `npm install`
-4. Serve the project `ng serve -o`
-5. clone backend (https://github.com/Nevy11/Mental-Health-Diary-backend)
-6. clone therapist ai backend (https://github.com/Nevy11/therapistGpt)
+
+Make sure you have angular installed in your machine
+1. Clone the repository
+  
+       git clone git@github.com:Nevy11/Mental-health-diary-front-end.git
+4. Enter the repository using terminal:
+  
+       cd Mental-health-diary-front-end/
+7. Install the dependancies
+  
+       npm install
+10. Serve the project
+   
+        ng serve -o
+    
+### clone backend (https://github.com/Nevy11/Mental-Health-Diary-backend)
+### clone therapist ai backend (https://github.com/Nevy11/therapistGpt)
