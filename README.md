@@ -1,4 +1,4 @@
-# 🧠 Mental Health Diary (Front-End)
+#  Mental Health Diary (Front-End)
 
 A comprehensive front-end application for the Mental Health Diary project. This platform provides users with tools to log their thoughts, track their mental well-being, and interact with an AI-powered therapist. 
 
@@ -6,7 +6,7 @@ This repository contains the user interface and client-side logic, built with [A
 
 ---
 
-## 🌟 Key Technologies
+##  Key Technologies
 
 - **Framework:** [Angular 19](https://angular.dev/)
 - **UI Library:** [Angular Material](https://material.angular.io/)
@@ -16,7 +16,7 @@ This repository contains the user interface and client-side logic, built with [A
 
 ---
 
-## 🔗 Related Services (Ecosystem)
+##  Related Services (Ecosystem)
 
 To run the full application and enable all features (like data persistence and AI chat), you will need to clone and run the following back-end services alongside this front-end:
 
@@ -27,7 +27,7 @@ To run the full application and enable all features (like data persistence and A
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 Follow these instructions to get a copy of the project up and running on your local machine for development and testing purposes.
 
@@ -81,14 +81,14 @@ Builds the application and watches for file changes, rebuilding automatically.
 
 ---
 
-## 🛠 Development Notes
+##  Development Notes
 
 - **Code Scaffolding:** Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 - **Styling:** The project utilizes Angular Material for its design system. Ensure you leverage Material components for a consistent UI.
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
